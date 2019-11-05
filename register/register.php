@@ -18,6 +18,8 @@
       Emergency Contact: <input type="text" name="emergency">
       Relation to Emergency Contact: <input type="text" name="relation">
       <!-- Family code, if the role is a family member -->
+
+      <input type="submit" name="register">
     </form>
   </body>
 </html>
