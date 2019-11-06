@@ -13,12 +13,15 @@
     $resultCheck = mysqli_num_rows($result);
 
     if($resultCheck>0) {
-
+      $user_id = "";
+      $role = "";
       while($row = mysqli_fetch_assoc($result)) {
-        echo $row['fname'];
-
+        $user_id = $row['id'];
+        $role = $row['roleid'];
       }
-
+      session_start();
+      $_SESSION['role'] = $role;
+      $_SESSION['user'] = $user_id;
     }
   }
 
