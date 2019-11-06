@@ -22,6 +22,10 @@
       session_start();
       $_SESSION['role'] = $role;
       $_SESSION['user'] = $user_id;
+
+      header("Location: ../doctors_home.php", false);
+    } else {
+      echo "<span class='fail'>Incorrect Username or Password</span>";
     }
   }
 
