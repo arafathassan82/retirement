@@ -6,10 +6,11 @@
   <head>
     <meta charset="utf-8">
     <title>Register</title>
+    <script type="text/javascript" src="register.js"></script>
   </head>
   <body>
-    <form method="post">
-      <select name="role">
+    <form method="post" id="registerform">
+      <select name="role" id="role" onchange="displayExtras();">
         <!-- php which generates options based on the roles in the database -->
 
         <?php
@@ -35,8 +36,9 @@
       Phone: <input type="text" name="phone">
       Password: <input type="password" name="password">
       Date of Birth: <input type="date" name="date">
+      <!-- Only if you're a patient
       Emergency Contact: <input type="text" name="emergency">
-      Relation to Emergency Contact: <input type="text" name="relation">
+      Relation to Emergency Contact: <input type="text" name="relation"> -->
       <!-- Family code, if the role is a family member -->
 
       <input type="submit" name="register">
