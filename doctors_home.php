@@ -1,5 +1,7 @@
 <?php
   include "includes/nav.php";
+  // always include session_start in pages that you want to reference sessionn variables in.
+  session_start();
 ?>
 
 <!DOCTYPE html>
