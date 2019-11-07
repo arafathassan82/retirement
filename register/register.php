@@ -11,6 +11,23 @@
     <form method="post">
       <select name="role">
         <!-- php which generates options based on the roles in the database -->
+
+        <?php
+          include "../database/db.php";
+          $roles = "SELECT * FROM `Roles`;";
+          $result = mysqli_query($conn, $roles);
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              $roleid = $row['id'];
+              $rolename = $row['name'];
+
+              echo "<option value='$roleid'>$rolename</option>";
+            }
+          }
+        ?>
+
       </select>
       First Name: <input type="text" name="fName">
       Last Name: <input type="text" name="lName">
