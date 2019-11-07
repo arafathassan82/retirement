@@ -1,4 +1,6 @@
 <?php
+  session_start();
+  session_destroy();
   $root = $_SERVER['DOCUMENT_ROOT'];
   include "$root/retirement-home/database/db.php";
 
