@@ -1,5 +1,6 @@
 <?php
   //make sure this page is only accessible by admins
+  session_start();
 ?>
 
 <!DOCTYPE html>
