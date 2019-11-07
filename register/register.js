@@ -1,8 +1,21 @@
 function appendExtra() {
     var form = document.getElementById("registerform");
+
+    var familyCodeLabel = document.createElement("label");
+    var emergencyContactLabel = document.createElement("label");
+    var relationLabel = document.createElement("label");
+
     var familyCode = document.createElement("input");
     var emergencyContact = document.createElement("input");
     var relation = document.createElement("input");
+
+    familyCodeLabel.id = "familycode";
+    emergencyContactLabel.id = "emergency";
+    relationLabel.id = "relation";
+
+    familyCodeLabel.innerText = "Family Code: ";
+    emergencyContactLabel.innerText = "Emergency Contact: ";
+    relationLabel.innerText = "Emergency Contact Relation: ";
 
     familyCode.type = "text";
     emergencyContact.type = "text";
@@ -10,13 +23,17 @@ function appendExtra() {
     familyCode.name = "familycode";
     emergencyContact.name = "emergency";
     relation.name = "relation";
-    familyCode.id = "familycode";
-    emergencyContact.id = "emergency";
-    relation.id = "relation";
+    // familyCode.id = "familycode";
+    // emergencyContact.id = "emergency";
+    // relation.id = "relation";
 
-    form.appendChild(familyCode);
-    form.appendChild(emergencyContact);
-    form.appendChild(relation);
+    form.appendChild(familyCodeLabel);
+    form.appendChild(emergencyContactLabel);
+    form.appendChild(relationLabel);
+
+    familyCodeLabel.appendChild(familyCode);
+    emergencyContactLabel.appendChild(emergencyContact);
+    relationLabel.appendChild(relation);
 }
 
 function removeExtra() {
