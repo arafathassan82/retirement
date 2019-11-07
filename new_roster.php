@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -34,8 +38,6 @@
       <select name="caregiver4">
         <!-- options based on caregivers in DB -->
       </select>
-
-      <form
     </form>
   </body>
 </html>
