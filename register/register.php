@@ -1,5 +1,16 @@
 <?php
-  session_start();
+  if(isset($_POST['register'])){
+    include_once "../database/db.php";
+    if(isset($_POST['familycode'])){
+      $sql = "INSERT INTO `Users` (`roleid`, `fname`, `lname`, `email`, `phone`, `password`, `dateofbirth`, `familycode`, `emergencycontact`, `emergencyrelation`, `approved`, `group`)
+      VALUES ('{$_POST['role']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['email']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['date']}', '{$_POST['familycode']}', '{$_POST['emergency']}', '{$_POST['relation']}', FALSE, 0);";
+      mysqli_query($conn, $sql);
+    } else {
+      $sql = "INSERT INTO `Users` (`roleid`, `fname`, `lname`, `email`, `phone`, `password`, `dateofbirth`, `familycode`, `emergencycontact`, `emergencyrelation`, `approved`, `group`)
+      VALUES ('{$_POST['role']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['email']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['date']}', NULL, NULL, NULL, FALSE, 0);";
+      mysqli_query($conn, $sql);
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -9,12 +20,12 @@
     <script type="text/javascript" src="register.js"></script>
   </head>
   <body>
-    <form method="post" id="registerform">
+    <form method="post" id="registerform" action="register.php">
       <select name="role" id="role" onchange="displayExtras();">
         <!-- php which generates options based on the roles in the database -->
 
         <?php
-          include "../database/db.php";
+          include_once "../database/db.php";
           $roles = "SELECT * FROM `Roles`;";
           $result = mysqli_query($conn, $roles);
           $resultCheck = mysqli_num_rows($result);
@@ -36,12 +47,9 @@
       Phone: <input type="text" name="phone">
       Password: <input type="password" name="password">
       Date of Birth: <input type="date" name="date">
-      <!-- Only if you're a patient
-      Emergency Contact: <input type="text" name="emergency">
-      Relation to Emergency Contact: <input type="text" name="relation"> -->
       <!-- Family code, if the role is a family member -->
 
-      <input type="submit" name="register">
+      <input type="submit" name="register" id="submit">
     </form>
   </body>
 </html>

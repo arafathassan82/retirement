@@ -1,5 +1,6 @@
 function appendExtra() {
     var form = document.getElementById("registerform");
+    var submit = document.getElementById("submit");
 
     var familyCodeLabel = document.createElement("label");
     var emergencyContactLabel = document.createElement("label");
@@ -23,9 +24,6 @@ function appendExtra() {
     familyCode.name = "familycode";
     emergencyContact.name = "emergency";
     relation.name = "relation";
-    // familyCode.id = "familycode";
-    // emergencyContact.id = "emergency";
-    // relation.id = "relation";
 
     form.appendChild(familyCodeLabel);
     form.appendChild(emergencyContactLabel);
