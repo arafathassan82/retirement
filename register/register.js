@@ -10,6 +10,14 @@ function appendExtra() {
     var emergencyContact = document.createElement("input");
     var relation = document.createElement("input");
 
+    form.removeChild(submit);
+
+    var submit2 = document.createElement("input");
+
+    submit2.type = "submit";
+    submit2.name = "register";
+    submit2.id = "submit";
+
     familyCodeLabel.id = "familycode";
     emergencyContactLabel.id = "emergency";
     relationLabel.id = "relation";
@@ -32,6 +40,8 @@ function appendExtra() {
     familyCodeLabel.appendChild(familyCode);
     emergencyContactLabel.appendChild(emergencyContact);
     relationLabel.appendChild(relation);
+
+    form.appendChild(submit2);
 }
 
 function removeExtra() {
