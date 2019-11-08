@@ -1,6 +1,6 @@
 <?php
   if(isset($_POST['register'])){
-    include_once "../database/db.php";
+    include_once "database/db.php";
     if(isset($_POST['familycode'])){
       $sql = "INSERT INTO `Users` (`roleid`, `fname`, `lname`, `email`, `phone`, `password`, `dateofbirth`, `familycode`, `emergencycontact`, `emergencyrelation`, `approved`, `group`)
       VALUES ('{$_POST['role']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['email']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['date']}', '{$_POST['familycode']}', '{$_POST['emergency']}', '{$_POST['relation']}', FALSE, 0);";
@@ -10,7 +10,7 @@
       VALUES ('{$_POST['role']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['email']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['date']}', NULL, NULL, NULL, FALSE, 0);";
       mysqli_query($conn, $sql);
     }
-    header("Location: ../login/login.php");
+    header("Location: login.php");
   }
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
         <!-- php which generates options based on the roles in the database -->
 
         <?php
-          include_once "../database/db.php";
+          include_once "database/db.php";
           $roles = "SELECT * FROM `Roles`;";
           $result = mysqli_query($conn, $roles);
           $resultCheck = mysqli_num_rows($result);

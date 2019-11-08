@@ -1,8 +1,3 @@
-<?php
-  //make sure this page is only accessible by admins
-  session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,6 +5,14 @@
     <title>Additional Information of Patient</title>
   </head>
   <body>
+    <?php
+      $root = $_SERVER['DOCUMENT_ROOT'];
+      include "$root/retirement-home/includes/nav.php";
+      // always include session_start in pages that you want to reference session variables in.
+      if ($_SESSION['role'] != 1) {
+        header("Location: login.php");
+      }
+    ?>
     <form method="post">
       Patient ID: <input type="number" name="patient_id">
       Group: <input type="text" name="group">

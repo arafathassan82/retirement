@@ -1,6 +1,3 @@
-<?php
-  session_start();
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -8,6 +5,14 @@
     <title>Roster</title>
   </head>
   <body>
+    <?php
+      $root = $_SERVER['DOCUMENT_ROOT'];
+      include "$root/retirement-home/includes/nav.php";
+      // always include session_start in pages that you want to reference session variables in.
+      if (!isset($_SESSION['role'])) {
+        header("Location: login.php");
+      }
+    ?>
     <h1>Roster</h1>
     <form method="post">
       Date: <input name="date" type="date">

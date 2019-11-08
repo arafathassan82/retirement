@@ -1,10 +1,3 @@
-<?php
-  //include "includes/nav.php";
-
-  // always include session_start in pages that you want to reference sessionn variables in.
-  session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -12,6 +5,14 @@
     <title>Home</title>
   </head>
   <body>
+    <?php
+      $root = $_SERVER['DOCUMENT_ROOT'];
+      include "$root/retirement-home/includes/nav.php";
+      // always include session_start in pages that you want to reference session variables in.
+      if ($_SESSION['role'] != 2) {
+        header("Location: login.php");
+      }
+    ?>
     <h1>Home</h1>
     <!-- table displaying older appointments of patients -->
     <form method="post">
