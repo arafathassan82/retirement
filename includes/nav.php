@@ -3,8 +3,9 @@
   $nav_arr = array();
 
   if (isset($_POST['logout'])) {
-    session_destroy();
-    header("Location: ../login/login.php", false);
+    unset($_SESSION["user"]);
+    unset($_SESSION["role"]);
+    header("Refresh: 2; URL = login/login.php");
   }
 
   if ($_SESSION['role'] == 6) {
