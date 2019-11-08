@@ -26,11 +26,11 @@
       $_SESSION['user'] = $user_id;
 
       if ($_SESSION['role'] == 2) {
-        header("Location: ../doctors_home.php", false);
+        header("Location: doctors_home.php");
       } else if ($_SESSION['role'] == 4) {
-        header("Location: ../caregivers_home.php", false);
+        header("Location: caregivers_home.php");
       } else if ($_SESSION['role'] == 5) {
-        header("Location: ../family_home.php", false);
+        header("Location: family_home.php");
       }
     } else {
       echo "<span class='fail'>Incorrect Username or Password</span>";
