@@ -20,8 +20,8 @@
       <tr>
         <th>Name</th>
         <th>Role</th>
-        <th>Approve</th>
-        <th>Disapprove</th>
+        <th></th>
+        <th></th>
       </tr>
       <?php
         include_once "database/db.php";
@@ -42,8 +42,8 @@
             echo "<tr>
               <td>$fname $lname</td>
               <td>$role</td>
-              <td><a href=\"approve.php?id=$userid\">Yes</a></td>
-              <td><a href=\"\">Nothing Yet</a></td>
+              <td><a href=\"approve.php?id=$userid\">Approve</a></td>
+              <td><a href=\"disapprove.php?id=$userid\">Remove</a></td>
             </tr>";
           }
         }
