@@ -26,13 +26,14 @@
       <?php
         include_once "database/db.php";
 
-        $sql = "SELECT Users.id, roleid, name, fname, lname, approved FROM `Users`
+        $sql = "SELECT Users.id AS id, roleid, name, fname, lname, approved FROM `Users`
         JOIN `Roles` ON Users.roleid = Roles.id
         WHERE approved = 0;";
         $results = mysqli_query($conn, $sql);
 
         if($results){
           while($row = mysqli_fetch_assoc($results)){
+            $userid = $row['id'];
             $role = $row['name'];
             $fname = $row['fname'];
             $lname = $row['lname'];
@@ -41,8 +42,8 @@
             echo "<tr>
               <td>$fname $lname</td>
               <td>$role</td>
-              <td></td>
-              <td></td>
+              <td><a href=\"approve.php?id=$userid\">Yes</a></td>
+              <td><a href=\"\">Nothing Yet</a></td>
             </tr>";
           }
         }
