@@ -14,16 +14,40 @@
       }
     ?>
     <form method="post">
-      Patient ID: <input type="number" name="patient_id">
-      Group: <input type="text" name="group">
-      Admission Date: <input type="date" name="admission_date">
-      Date: <input type="date" name="date">
-      Doctor:
-      <select name="doctors">
-        <!-- options representing all doctors -->
-      </select>
+      <!-- Patient Name displays when a patient is selected -->
+      <?php
+      if(isset($_POST['patient_id'])){
+        include_once "database/db.php";
 
-      <input type="submit" name="info_of_patient"
+        $sql = "SELECT id, fname, lname FROM `Users` WHERE id = {$_POST['patient_id']} AND approved = 1 AND roleid = 6";
+        $results = mysqli_query($conn, $sql);
+
+        if($results){
+          while($row = mysqli_fetch_assoc($results)){
+            $id = $row['id'];
+            $fname = $row['fname'];
+            $lname = $row['lname'];
+
+            echo "Patient Name: <input type=\"text\" name=\"name\" value=\"$fname $lname\" readonly>";
+            echo "Group: <input type=\"text\" name=\"group\" value=\"{$_POST['group']}\" readonly>";
+            echo "Admission Date: <input type=\"text\" name=\"admission_date\" value=\"{$_POST['admission_date']}\" readonly>";
+          }
+          echo "<input type=\"submit\" name=\"submit_changes\" value=\"Confirm\">";
+        }
+      } else {
+        echo "Patient ID: <input type=\"number\" name=\"patient_id\">
+        Group: <input type=\"text\" name=\"group\">
+        Admission Date: <input type=\"date\" name=\"admission_date\">";
+        echo "<input type=\"submit\" name=\"info_of_patient\">";
+      }
+
+      if(isset($_POST['submit_changes'])){
+        // add more columns to user in order to change
+        // $sql = "UPDATE `Users` SET 
+        // WHERE id = {$_POST['patient_id']}";
+        echo "Hi";
+      }
+      ?>
     </form>
   </body>
 </html>
