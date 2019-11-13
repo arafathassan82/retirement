@@ -8,36 +8,39 @@
     header("Refresh: 2; URL = login.php");
   }
 
-  if ($_SESSION['role'] == 6) {
-    $nav_arr[] = 'patients_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 5) {
-    $nav_arr[] = 'family_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 4) {
-    $nav_arr[] = 'caregiver_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 3) {
-    $nav_arr[] = 'home';
-    $nav_arr[] = 'roster';
-    $nav_arr[] = 'new_roster';
-  } else if ($_SESSION['role'] == 2) {
-    $nav_arr[] = 'doctors_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 1) {
-    $nav_arr[] = 'home';
-    $nav_arr[] = 'roster';
-    $nav_arr[] = 'new_roster';
-    $nav_arr[] = 'role';
-    $nav_arr[] = 'employee';
-    $nav_arr[] = 'patients';
-    $nav_arr[] = 'registration_approval';
-    $nav_arr[] = 'additional_info_of_patient';
-    $nav_arr[] = 'admins_report';
-    $nav_arr[] = 'payments';
-  } else {
-    $nav_arr[] = 'home';
-    $nav_arr[] = 'login';
+  if(isset($_SESSION['role'])) {
+
+    if ($_SESSION['role'] == 6) {
+      $nav_arr[] = 'patients_home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 5) {
+      $nav_arr[] = 'family_home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 4) {
+      $nav_arr[] = 'caregiver_home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 3) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+      $nav_arr[] = 'new_roster';
+    } else if ($_SESSION['role'] == 2) {
+      $nav_arr[] = 'doctors_home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 1) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+      $nav_arr[] = 'new_roster';
+      $nav_arr[] = 'role';
+      $nav_arr[] = 'employee';
+      $nav_arr[] = 'patients';
+      $nav_arr[] = 'registration_approval';
+      $nav_arr[] = 'additional_info_of_patient';
+      $nav_arr[] = 'admins_report';
+      $nav_arr[] = 'payments';
+    } else {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'login';
+    }
   }
 ?>
 
@@ -76,9 +79,13 @@
         echo "<a href='payment.php'>Payments</a>";
       }
     }
-  ?>
 
-  <form method="post">
-    <input type="submit" name="logout" value="logout">
-  </form>
+    if(isset($_SESSION['role'])) {
+      echo "<form method='post'>";
+        echo "<input type='submit' name='logout' value='logout'>";
+      echo "</form>";
+    } else {
+      echo "<span>Logging Out...</span>";
+    }
+  ?>
 </nav>
