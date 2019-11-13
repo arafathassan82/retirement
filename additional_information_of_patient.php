@@ -27,25 +27,28 @@
             $id = $row['id'];
             $fname = $row['fname'];
             $lname = $row['lname'];
-
+            
+            echo "Patient ID: <input type=\"text\" name=\"patient_id\" value=\"$id\" readonly>";
             echo "Patient Name: <input type=\"text\" name=\"name\" value=\"$fname $lname\" readonly>";
-            echo "Group: <input type=\"text\" name=\"group\" value=\"{$_POST['group']}\" readonly>";
+            echo "Group: <input type=\"number\" name=\"group\" value=\"{$_POST['group']}\" readonly>";
             echo "Admission Date: <input type=\"text\" name=\"admission_date\" value=\"{$_POST['admission_date']}\" readonly>";
           }
           echo "<input type=\"submit\" name=\"submit_changes\" value=\"Confirm\">";
         }
       } else {
         echo "Patient ID: <input type=\"number\" name=\"patient_id\">
-        Group: <input type=\"text\" name=\"group\">
+        Group: <input type=\"number\" name=\"group\">
         Admission Date: <input type=\"date\" name=\"admission_date\">";
         echo "<input type=\"submit\" name=\"info_of_patient\">";
       }
 
       if(isset($_POST['submit_changes'])){
+        include_once "database/db.php";
         // add more columns to user in order to change
-        // $sql = "UPDATE `Users` SET 
-        // WHERE id = {$_POST['patient_id']}";
-        echo "Hi";
+        $sql = "UPDATE `Users` SET admissiondate = '{$_POST['admission_date']}', `group` = {$_POST['group']}
+        WHERE id = {$_POST['patient_id']};";
+        mysqli_query($conn, $sql);
+        header("Location: additional_information_of_patient.php");
       }
       ?>
     </form>
