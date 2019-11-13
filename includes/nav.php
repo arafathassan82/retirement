@@ -57,7 +57,7 @@
         echo "<a href='patients_home.php'>Home</a>";
       } else if ($value == 'family_home') {
         echo "<a href='family_home.php'>Home</a>";
-      } else if ($value == 'caregivers_home') {
+      } else if ($value == 'caregiver_home') {
         echo "<a href='caregivers_home.php'>Home</a>";
       } else if ($value == 'roster') {
         echo "<a href='roster.php'>Roster</a>";
