@@ -12,7 +12,7 @@ mysqli_query($conn, "DROP TABLE IF EXISTS `Payment`");
 $query = "CREATE TABLE `Roles` (id bigint PRIMARY KEY AUTO_INCREMENT, name varchar(20), accesslevel integer);";
 $result = mysqli_query($conn, $query);
 
-$query2 = "CREATE TABLE `Users` (id bigint PRIMARY KEY AUTO_INCREMENT, roleid bigint REFERENCES Roles(id), fname varchar(30), lname varchar(30), email varchar(50), phone varchar(15), `password` text, dateofbirth date, familycode varchar(30), emergencycontact varchar(30), emergencyrelation varchar(20), approved boolean, `group` smallint);";
+$query2 = "CREATE TABLE `Users` (id bigint PRIMARY KEY AUTO_INCREMENT, roleid bigint REFERENCES Roles(id), fname varchar(30), lname varchar(30), email varchar(50), phone varchar(15), `password` text, dateofbirth date, familycode varchar(30), emergencycontact varchar(30), emergencyrelation varchar(20), approved boolean, `group` smallint, admissiondate date DEFAULT NULL);";
 $result2 = mysqli_query($conn, $query2);
 
 $query3 = "CREATE TABLE `Roster` (id bigint PRIMARY KEY AUTO_INCREMENT, date date, doctorid bigint REFERENCES Users (id), supervisorid bigint REFERENCES Users (id), caregiver1id bigint REFERENCES Users (id), caregiver2id bigint REFERENCES Users (id), caregiver3id bigint REFERENCES Users (id), caregiver4id bigint REFERENCES Users (id));";
