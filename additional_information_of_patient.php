@@ -21,8 +21,9 @@
 
         $sql = "SELECT id, fname, lname FROM `Users` WHERE id = {$_POST['patient_id']} AND approved = 1 AND roleid = 6";
         $results = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($results);
 
-        if($results){
+        if($resultCheck > 0){
           while($row = mysqli_fetch_assoc($results)){
             $id = $row['id'];
             $fname = $row['fname'];
@@ -34,6 +35,8 @@
             echo "Admission Date: <input type=\"text\" name=\"admission_date\" value=\"{$_POST['admission_date']}\" readonly>";
           }
           echo "<input type=\"submit\" name=\"submit_changes\" value=\"Confirm\">";
+        } else {
+          header("Location: additional_information_of_patient.php");
         }
       } else {
         echo "Patient ID: <input type=\"number\" name=\"patient_id\">
