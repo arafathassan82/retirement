@@ -10,7 +10,7 @@
       VALUES ('{$_POST['role']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['email']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['date']}', NULL, NULL, NULL, FALSE, 0);";
       mysqli_query($conn, $sql);
     }
-    header("Location: login.php");
+    header("Location: home.php");
   }
 ?>
 <!DOCTYPE html>
