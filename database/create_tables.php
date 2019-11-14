@@ -18,7 +18,7 @@ $result2 = mysqli_query($conn, $query2);
 $query3 = "CREATE TABLE `Roster` (id bigint PRIMARY KEY AUTO_INCREMENT, date date, doctorid bigint REFERENCES Users (id), supervisorid bigint REFERENCES Users (id), caregiver1id bigint REFERENCES Users (id), caregiver2id bigint REFERENCES Users (id), caregiver3id bigint REFERENCES Users (id), caregiver4id bigint REFERENCES Users (id));";
 $result3 = mysqli_query($conn, $query3);
 
-$query4 = "CREATE TABLE `Appointments` (id bigint PRIMARY KEY AUTO_INCREMENT, patientid bigint REFERENCES Users (id), date date, morning varchar(30), afternoon varchar(30), night varchar(30));";
+$query4 = "CREATE TABLE `Appointments` (id bigint PRIMARY KEY AUTO_INCREMENT, patientid bigint REFERENCES Users (id), doctorid bigint REFERENCES Users (id), date date, morning varchar(30), afternoon varchar(30), night varchar(30), comment text);";
 $result4 = mysqli_query($conn, $query4);
 
 $query5 = "CREATE TABLE `Perscriptions` (id bigint PRIMARY KEY AUTO_INCREMENT, name varchar(50));";
