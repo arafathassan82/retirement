@@ -29,8 +29,8 @@ $query3 = "INSERT INTO `Roster` (date, doctorid, supervisorid, caregiver1id, car
 VALUES ('2019-11-04', 2, 3, 4, 5, 6, 7);";
 mysqli_query($conn, $query3);
 
-$query4 = "INSERT INTO `Appointments` (patientid, date, morning, afternoon, night)
-VALUES (9, '2019-11-04', 'Tylenol', 'Jack Daniels', 'Sleep');";
+$query4 = "INSERT INTO `Appointments` (patientid, doctorid, date, morning, afternoon, night, comment)
+VALUES (9, 2, '2019-11-04', 'Tylenol', 'Jack Daniels', 'Sleep', NULL);";
 mysqli_query($conn, $query4);
 
 $query5 = "INSERT INTO `Perscriptions` (name)
