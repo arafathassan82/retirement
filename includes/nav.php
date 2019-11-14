@@ -35,6 +35,7 @@
     $nav_arr[] = 'additional_info_of_patient';
     $nav_arr[] = 'admins_report';
     $nav_arr[] = 'payments';
+    $nav_arr[] = 'doctors_appointment';
   } else {
     $nav_arr[] = 'home';
     $nav_arr[] = 'login';
@@ -74,6 +75,8 @@
         echo "<a href='admins_report.php'>Admin's Report</a>";
       } else if ($value == 'payments') {
         echo "<a href='payment.php'>Payments</a>";
+      } else if ($value == 'doctors_appointment'){
+        echo "<a href='doctors_appointment.php'>Doctor's Appointment</a>";
       }
     }
   ?>
