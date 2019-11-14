@@ -20,18 +20,17 @@
       while($row = mysqli_fetch_assoc($result)) {
         $user_id = $row['id'];
         $role = $row['roleid'];
+        $approved = $row['approved'];
       }
-      session_start();
-      $_SESSION['role'] = $role;
-      $_SESSION['user'] = $user_id;
+      if ($approved == 1) {
+        session_start();
+        $_SESSION['role'] = $role;
+        $_SESSION['user'] = $user_id;
+        header("Location: home.php");
+      } else {
+        echo "<span class='fail'>User has not yet been approved</span>";
+      }
 
-      if ($_SESSION['role'] == 2) {
-        header("Location: doctors_home.php");
-      } else if ($_SESSION['role'] == 4) {
-        header("Location: caregivers_home.php");
-      } else if ($_SESSION['role'] == 5) {
-        header("Location: family_home.php");
-      }
     } else {
       echo "<span class='fail'>Incorrect Username or Password</span>";
     }
@@ -54,6 +53,8 @@
       Password: <input type="password" name="password">
 
       <input type="submit" name="login">
+
+      <a href="home.php">Go Home</a>
     </form>
   </body>
 </html>

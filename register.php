@@ -52,5 +52,7 @@
 
       <input type="submit" name="register" id="submit">
     </form>
+
+    <a href="home.php">Go Home</a>
   </body>
 </html>

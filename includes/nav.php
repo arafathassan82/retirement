@@ -5,40 +5,43 @@
   if (isset($_POST['logout'])) {
     unset($_SESSION["user"]);
     unset($_SESSION["role"]);
-    header("Refresh: 2; URL = login.php");
+    header("Location: login.php");
   }
 
-  if ($_SESSION['role'] == 6) {
-    $nav_arr[] = 'patients_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 5) {
-    $nav_arr[] = 'family_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 4) {
-    $nav_arr[] = 'caregiver_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 3) {
-    $nav_arr[] = 'home';
-    $nav_arr[] = 'roster';
-    $nav_arr[] = 'new_roster';
-  } else if ($_SESSION['role'] == 2) {
-    $nav_arr[] = 'doctors_home';
-    $nav_arr[] = 'roster';
-  } else if ($_SESSION['role'] == 1) {
-    $nav_arr[] = 'home';
-    $nav_arr[] = 'roster';
-    $nav_arr[] = 'new_roster';
-    $nav_arr[] = 'role';
-    $nav_arr[] = 'employee';
-    $nav_arr[] = 'patients';
-    $nav_arr[] = 'registration_approval';
-    $nav_arr[] = 'additional_info_of_patient';
-    $nav_arr[] = 'admins_report';
-    $nav_arr[] = 'payments';
-    $nav_arr[] = 'doctors_appointment';
-  } else {
-    $nav_arr[] = 'home';
-    $nav_arr[] = 'login';
+  if(isset($_SESSION['role'])) {
+
+    if ($_SESSION['role'] == 6) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 5) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 4) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 3) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+      $nav_arr[] = 'new_roster';
+    } else if ($_SESSION['role'] == 2) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+    } else if ($_SESSION['role'] == 1) {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'roster';
+      $nav_arr[] = 'new_roster';
+      $nav_arr[] = 'role';
+      $nav_arr[] = 'employee';
+      $nav_arr[] = 'patients';
+      $nav_arr[] = 'registration_approval';
+      $nav_arr[] = 'additional_info_of_patient';
+      $nav_arr[] = 'admins_report';
+      $nav_arr[] = 'payments';
+      $nav_arr[] = 'doctors_appointment';
+    } else {
+      $nav_arr[] = 'home';
+      $nav_arr[] = 'login';
+    }
   }
 ?>
 
@@ -55,7 +58,7 @@
         echo "<a href='patients_home.php'>Home</a>";
       } else if ($value == 'family_home') {
         echo "<a href='family_home.php'>Home</a>";
-      } else if ($value == 'caregivers_home') {
+      } else if ($value == 'caregiver_home') {
         echo "<a href='caregivers_home.php'>Home</a>";
       } else if ($value == 'roster') {
         echo "<a href='roster.php'>Roster</a>";
@@ -79,9 +82,11 @@
         echo "<a href='doctors_appointment.php'>Doctor's Appointment</a>";
       }
     }
-  ?>
 
-  <form method="post">
-    <input type="submit" name="logout" value="logout">
-  </form>
+    if(isset($_SESSION['role'])) {
+      echo "<form method='post'>";
+        echo "<input type='submit' name='logout' value='logout'>";
+      echo "</form>";
+    }
+  ?>
 </nav>

@@ -10,7 +10,7 @@
       include "$root/retirement-home/includes/nav.php";
       // always include session_start in pages that you want to reference session variables in.
       if ($_SESSION['role'] != 1) {
-        header("Location: login.php");
+        header("Location: home.php");
       }
     ?>
     <form method="post">
@@ -28,7 +28,7 @@
             $id = $row['id'];
             $fname = $row['fname'];
             $lname = $row['lname'];
-            
+
             echo "Patient ID: <input type=\"text\" name=\"patient_id\" value=\"$id\" readonly>";
             echo "Patient Name: <input type=\"text\" name=\"name\" value=\"$fname $lname\" readonly>";
             echo "Group: <input type=\"number\" name=\"group\" value=\"{$_POST['group']}\" readonly>";
