@@ -5,7 +5,7 @@
   if (isset($_POST['logout'])) {
     unset($_SESSION["user"]);
     unset($_SESSION["role"]);
-    header("Refresh: 2; URL = login.php");
+    header("Location: login.php");
   }
 
   if(isset($_SESSION['role'])) {
@@ -84,8 +84,6 @@
       echo "<form method='post'>";
         echo "<input type='submit' name='logout' value='logout'>";
       echo "</form>";
-    } else {
-      echo "<span>Logging Out...</span>";
     }
   ?>
 </nav>

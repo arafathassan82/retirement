@@ -2,6 +2,10 @@
   $root = $_SERVER['DOCUMENT_ROOT'];
   include "$root/retirement-home/includes/nav.php";
 
+  if(isset($auth_fail)) {
+    echo "<span>$auth_fail</span>";
+  }
+
   if(isset($_SESSION['role'])){
     $is_home = True;
 
@@ -18,5 +22,7 @@
     } else if ($_SESSION['role'] == 6) {
       include_once "$root/retirement-home/patients_home.php";
     }
+  } else {
+    include_once "$root/retirement-home/no_login_home.php";
   }
 ?>

@@ -11,7 +11,7 @@
         include "$root/retirement-home/includes/nav.php";
         // always include session_start in pages that you want to reference session variables in.
         if (!isset($_SESSION['role'])) {
-          header("Location: login.php");
+          header("Location: home.php");
         }
       }
     ?>
