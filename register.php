@@ -10,7 +10,7 @@
       VALUES ('{$_POST['role']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['email']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['date']}', NULL, NULL, NULL, FALSE, 0);";
       mysqli_query($conn, $sql);
     }
-    header("Location: home.php");
+    header("Location: login.php");
   }
 ?>
 <!DOCTYPE html>
@@ -52,5 +52,7 @@
 
       <input type="submit" name="register" id="submit">
     </form>
+
+    <a href="home.php">Go Home</a>
   </body>
 </html>
