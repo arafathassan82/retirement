@@ -21,5 +21,43 @@
 
       <input value="Ok" type="submit" name="new_salary">
     </form>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>Salary</th>
+      </tr>
+      <tr>
+        <form method = "post">
+          <td>
+            <input type="number" name="id_query">
+          </td>
+          <td>
+            <input type="text" name="fname_query">
+          </td>
+          <td>
+            <input type="text" name="lname_query">
+          </td>
+          <td>
+            <input type="number" name="role_query">
+          </td>
+          <td>
+            <input type="text" name="salary_query">
+          </td>
+          <td>
+            <input type="submit" value="submit">
+          </td>
+        </form>
+      </tr>
+      <?php
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        include "$root/retirement-home/database/db.php";
+
+        
+      ?>
+    </table>
   </body>
 </html>
