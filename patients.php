@@ -58,7 +58,7 @@
         include "$root/retirement-home/database/db.php";
         $date = date('Y-m-d');
 
-        $sql_query = "SELECT CAST(DATEDIFF('$date', `dateofbirth`) / 365.25 AS INTEGER) as `age`, `id`, `roleid`, `fname`, `lname`, `dateofbirth`, `familycode`, `emergencycontact`, `emergencyrelation`, `admissiondate` FROM Users WHERE ";
+        $sql_query = "SELECT * FROM (SELECT CAST(DATEDIFF('$date', `dateofbirth`) / 365.25 AS INTEGER) AS `age`, `id`, `roleid`, `fname`, `lname`, `dateofbirth`, `familycode`, `emergencycontact`, `emergencyrelation`, `admissiondate` FROM Users) AS InnerTable WHERE ";
         $sql_arr = array();
         if(isset($_POST['id_query']) and $_POST['id_query'] != "") {
           $sql_arr["id"] = $_POST['id_query'];
@@ -104,8 +104,6 @@
         } else {
           $sql_query .= "roleid = 6;";
         }
-
-        print($sql_query);
 
         $result = mysqli_query($conn, $sql_query);
         $resultCheck = mysqli_num_rows($result);
