@@ -12,36 +12,110 @@
       if ($_SESSION['role'] != 1 and $_SESSION['role'] != 3) {
         header("Location: home.php");
       }
+
+      if(isset($_POST['supervisor'])){
+        include_once 'database/db.php';
+        mysqli_query($conn, "INSERT INTO `Roster` (`date`, doctorid, supervisorid, caregiver1id, caregiver2id, caregiver3id, caregiver4id)
+        VALUES ('{$_POST['date']}', {$_POST['doctor']}, {$_POST['supervisor']}, {$_POST['caregiver1']}, {$_POST['caregiver2']}, {$_POST['caregiver3']}, {$_POST['caregiver4']});");
+        header("Location: new_roster.php");
+      }
     ?>
     <form method="post">
-      Date: <input type="date" name="date">
+      Date: <input type="date" name="date" value="<?php $today = date("Y-m-d"); echo $today; ?>">
       Supervisor:
       <select name="supervisor">
         <!-- options based on supervisors in DB -->
+        <?php
+          include_once 'database/db.php';
+          $result = mysqli_query($conn, "SELECT id, fname, lname FROM `Users` WHERE roleid = 3 AND approved = 1;");
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              echo "<option value=\"{$row['id']}\">{$row['fname']} {$row['lname']}</option>";
+            }
+          }
+        ?>
       </select>
       Doctor:
-      <select>
+      <select name="doctor">
         <!-- options based on doctors in DB -->
-      </select name="doctor">
+        <?php
+          include_once 'database/db.php';
+          $result = mysqli_query($conn, "SELECT id, fname, lname FROM `Users` WHERE roleid = 2 AND approved = 1;");
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              echo "<option value=\"{$row['id']}\">{$row['fname']} {$row['lname']}</option>";
+            }
+          }
+        ?>
+      </select>
       Caregiver 1:
       <select name="caregiver1">
         <!-- options based on caregivers in DB -->
+        <?php
+          include_once 'database/db.php';
+          $result = mysqli_query($conn, "SELECT id, fname, lname FROM `Users` WHERE roleid = 4 AND approved = 1;");
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              echo "<option value=\"{$row['id']}\">{$row['fname']} {$row['lname']}</option>";
+            }
+          }
+        ?>
       </select>
 
       Caregiver 2:
       <select name="caregiver2">
         <!-- options based on caregivers in DB -->
+        <?php
+          include_once 'database/db.php';
+          $result = mysqli_query($conn, "SELECT id, fname, lname FROM `Users` WHERE roleid = 4 AND approved = 1;");
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              echo "<option value=\"{$row['id']}\">{$row['fname']} {$row['lname']}</option>";
+            }
+          }
+        ?>
       </select>
 
       Caregiver 3:
       <select name="caregiver3">
         <!-- options based on caregivers in DB -->
+        <?php
+          include_once 'database/db.php';
+          $result = mysqli_query($conn, "SELECT id, fname, lname FROM `Users` WHERE roleid = 4 AND approved = 1;");
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              echo "<option value=\"{$row['id']}\">{$row['fname']} {$row['lname']}</option>";
+            }
+          }
+        ?>
       </select>
 
       Caregiver 4:
       <select name="caregiver4">
         <!-- options based on caregivers in DB -->
+        <?php
+          include_once 'database/db.php';
+          $result = mysqli_query($conn, "SELECT id, fname, lname FROM `Users` WHERE roleid = 4 AND approved = 1;");
+          $resultCheck = mysqli_num_rows($result);
+
+          if($resultCheck > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              echo "<option value=\"{$row['id']}\">{$row['fname']} {$row['lname']}</option>";
+            }
+          }
+        ?>
       </select>
+      <input type="submit">
     </form>
   </body>
 </html>
