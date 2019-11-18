@@ -26,6 +26,7 @@
     } else if ($_SESSION['role'] == 2) {
       $nav_arr[] = 'home';
       $nav_arr[] = 'roster';
+      $nav_arr[] = 'patient_of_doctor';
     } else if ($_SESSION['role'] == 1) {
       $nav_arr[] = 'home';
       $nav_arr[] = 'roster';
@@ -80,6 +81,8 @@
         echo "<a href='payment.php'>Payments</a>";
       } else if ($value == 'doctors_appointment'){
         echo "<a href='doctors_appointment.php'>Doctor's Appointment</a>";
+      } else if ($value == 'patient_of_doctor'){
+        echo "<a href='patient_of_doctor.php'>Patient of Doctor</a>";
       }
     }
 
