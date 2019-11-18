@@ -19,7 +19,7 @@
     <ul>
         <?php
             include_once "database/db.php";
-            $sql = "SELECT DISTINCT patientid AS id, fname, lname FROM `Appointments` JOIN `Users` ON patientid WHERE `Users`.id = `Appointments`.patientid;";
+            $sql = "SELECT DISTINCT patientid AS id, fname, lname FROM `Appointments` JOIN `Users` ON patientid WHERE `Users`.id = `Appointments`.patientid AND `Appointments`.doctorid = {$_SESSION['user']};";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
             if($resultCheck > 0){
