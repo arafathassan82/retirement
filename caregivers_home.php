@@ -34,14 +34,21 @@
           $root = $_SERVER['DOCUMENT_ROOT'];
           include "$root/retirement-home/database/db.php";
 
-
-          function set_string(&$triggers, $columnName) {
+          function set_string(&$triggers, $columnName, $set) {
             if ($triggers > 0) {
               $triggers += 1;
-              return ", $columnName = 1";
+              if ($set == True) {
+                return ", $columnName = 1";
+              } else {
+                return ", $columnName = 0";
+              }
             } else {
               $triggers += 1;
-              return "SET $columnName = 1";
+              if ($set == True) {
+                return "SET $columnName = 1";
+              } else {
+                return "SET $columnName = 0";
+              }
             }
           }
 
@@ -61,22 +68,34 @@
                 $count = 0;
 
                 if(isset($_POST["{$user_id}_morning"])) {
-                  $set_values .= set_string($count, "morning");
+                  $set_values .= set_string($count, "morning", True);
+                } else {
+                  $set_values .= set_string($count, "morning", False);
                 }
                 if(isset($_POST["{$user_id}_afternoon"])) {
-                  $set_values .= set_string($count, "afternoon");
+                  $set_values .= set_string($count, "afternoon", True);
+                } else {
+                  $set_values .= set_string($count, "afternoon", False);
                 }
                 if(isset($_POST["{$user_id}_night"])) {
-                  $set_values .= set_string($count, "night");
+                  $set_values .= set_string($count, "night", True);
+                } else {
+                  $set_values .= set_string($count, "night", False);
                 }
                 if(isset($_POST["{$user_id}_breakfast"])) {
-                  $set_values .= set_string($count, "breakfast");
+                  $set_values .= set_string($count, "breakfast", True);
+                } else {
+                  $set_values .= set_string($count, "breakfast", False);
                 }
                 if(isset($_POST["{$user_id}_lunch"])) {
-                  $set_values .= set_string($count, "lunch");
+                  $set_values .= set_string($count, "lunch", True);
+                } else {
+                  $set_values .= set_string($count, "lunch", False);
                 }
                 if(isset($_POST["{$user_id}_dinner"])) {
-                  $set_values .= set_string($count, "dinner");
+                  $set_values .= set_string($count, "dinner", True);
+                } else {
+                  $set_values .= set_string($count, "dinner", False);
                 }
 
                 if($count > 0) {
