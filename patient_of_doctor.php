@@ -7,7 +7,7 @@
     }
 
     if(!isset($_GET['id'])){
-        header("Location: doctors_home.php");
+        header("Location: select_patient.php");
     }
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,7 @@
 </head>
 <body>
     <?php
+        echo "<a href=\"select_patient.php\">Back</a>";
         include_once "database/db.php";
         $sql = "SELECT id, fname, lname FROM `Users` WHERE id = {$_GET['id']}";
         $result = mysqli_query($conn, $sql);

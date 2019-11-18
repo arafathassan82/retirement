@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['date']) && $_SESSION['role'] == 2){
+    if(isset($_POST['date'])){
         if($_POST['date'] == date("Y-m-d")){
             include 'database/db.php';
             $sql = "SELECT * FROM `Appointments` WHERE `date` = '{$_POST['date']}' AND `patientid` = {$_POST['id']};";
