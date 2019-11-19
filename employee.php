@@ -82,14 +82,18 @@
         $count = 0;
         foreach ($sql_arr as $key => $val) {
           if ($count >= 1) {
-            if ($key == 'id' or $key == 'salary'){
+            if ($key == 'id'){
               $sql_query .= "AND u.$key = $val ";
+            } else if ($key == 'salary'){
+              $sql_query .= "AND $key = $val ";
             } else {
               $sql_query .= "AND $key = '$val' ";
             }
           } else {
-            if ($key == 'id' or $key == 'salary'){
+            if ($key == 'id'){
               $sql_query .= "u.$key = $val ";
+            } else if ($key == 'salary'){
+              $sql_query .= "$key = $val ";
             } else {
               $sql_query .= "$key = '$val' ";
             }
