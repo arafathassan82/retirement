@@ -53,7 +53,7 @@
           }
 
           $date = date('Y-m-d');
-          $sql = "SELECT morning, afternoon, night, breakfast, lunch, dinner, fname, lname, u.id AS uid FROM Reports r JOIN Users u ON u.id = r.patientid WHERE r.date = '$date' AND r.caregiverid = {$_SESSION['user']};";
+          $sql = "SELECT morning, afternoon, night, breakfast, lunch, dinner, fname, lname, caregiver1id, caregiver2id, caregiver3id, caregiver4id, u.id AS uid FROM Reports r JOIN Users u ON u.id = r.patientid JOIN Roster ros ON ros.date = r.date WHERE r.date = '$date' AND (caregiver1id = {$_SESSION['user']} OR caregiver2id = {$_SESSION['user']} OR caregiver3id = {$_SESSION['user']} OR caregiver4id = {$_SESSION['user']});";
 
           if(isset($_POST['submit'])) {
 
@@ -63,7 +63,6 @@
               while($row = mysqli_fetch_assoc($result)) {
                 $user_id = $row['uid'];
 
-                // could maybe be faster if we kept track of the amount of if statements triggered (using a counter), and built an UPDATE statement to use at the end of the while loop
                 $set_values = "UPDATE Reports ";
                 $count = 0;
 
