@@ -9,7 +9,7 @@
             $resultCheck = mysqli_num_rows($result);
             
             if($resultCheck > 0){
-                $nextsql = "UPDATE `Appointments` SET `morning` = '{$_POST['morning']}', `afternoon` = '{$_POST['afternoon']}', `night` = '{$_POST['night']}', `comment` = '{$_POST['comment']}' WHERE id = $apptid;";
+                $nextsql = "UPDATE `Appointments` SET `morning` = '{$_POST['morning']}', `afternoon` = '{$_POST['afternoon']}', `night` = '{$_POST['night']}', `comment` = '{$_POST['comment']}', `isfinished` = 1 WHERE id = $apptid;";
                 mysqli_query($conn, $nextsql);
             }
         }

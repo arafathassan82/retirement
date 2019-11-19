@@ -38,6 +38,7 @@
             <th>Morning Med</th>
             <th>Afternoon Med</th>
             <th>Night Med</th>
+            <th>Finished</th>
         </tr>
         <?php
             include_once "database/db.php";
@@ -53,6 +54,11 @@
                     echo "<td>{$row['morning']}</td>";
                     echo "<td>{$row['afternoon']}</td>";
                     echo "<td>{$row['night']}</td>";
+                    if($row['isfinished'] == 0){
+                        echo "<td>❌</td>";
+                    } else {
+                        echo "<td>✔️</td>";
+                    }
                     echo '</tr>';
                 }
             }
@@ -68,6 +74,7 @@
             <th>Morning Med</th>
             <th>Afternoon Med</th>
             <th>Night Med</th>
+            <th>Finished</th>
         </tr>";
 
         include_once "database/db.php";
@@ -83,6 +90,12 @@
             echo "<td><input type=\"text\" name=\"morning\" value=\"{$row['morning']}\"></td>";
             echo "<td><input type=\"text\" name=\"afternoon\" value=\"{$row['afternoon']}\"></td>";
             echo "<td><input type=\"text\" name=\"night\" value=\"{$row['night']}\"></td>";
+            if($row['isfinished'] == 0){
+                echo "<td>❌</td>";
+            } else {
+                echo "<td>✔️</td>";
+            }
+
             echo '</tr>';
         }
 
