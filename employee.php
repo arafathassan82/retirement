@@ -57,11 +57,11 @@
         include "$root/retirement-home/database/db.php";
 
         if(isset($_POST['new_salary'])) {
-          $add_salary = "UPDATE Users SET salary = {$_POST['salary']} WHERE id = {$_POST['employee_id']};";
+          $add_salary = "UPDATE Employees SET salary = {$_POST['salary']} WHERE userid = {$_POST['employee_id']};";
           mysqli_query($conn, $add_salary);
         }
 
-        $sql_query = "SELECT u.id, roleid, fname, lname, salary, name FROM Users u JOIN Roles r ON u.roleid = r.id WHERE ";
+        $sql_query = "SELECT u.id, roleid, fname, lname, salary, name FROM Users u JOIN Roles r ON u.roleid = r.id JOIN Employees e ON u.id = e.userid WHERE ";
         $sql_arr = array();
         if(isset($_POST['id_query']) and $_POST['id_query'] != "") {
           $sql_arr["id"] = $_POST['id_query'];
