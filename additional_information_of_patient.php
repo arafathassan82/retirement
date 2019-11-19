@@ -48,8 +48,8 @@
       if(isset($_POST['submit_changes'])){
         include_once "database/db.php";
         // add more columns to user in order to change
-        $sql = "UPDATE `Users` SET admissiondate = '{$_POST['admission_date']}', `group` = {$_POST['group']}
-        WHERE id = {$_POST['patient_id']};";
+        $sql = "UPDATE `Patients` SET admissiondate = '{$_POST['admission_date']}', `group` = {$_POST['group']}
+        WHERE userid = {$_POST['patient_id']};";
         mysqli_query($conn, $sql);
         header("Location: additional_information_of_patient.php");
       }
