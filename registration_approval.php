@@ -40,12 +40,13 @@
             $fname = $row['fname'];
             $lname = $row['lname'];
             $approved = $row['approved'];
+            $roleid = $row['roleid'];
 
             echo "<tr>
               <td>$fname $lname</td>
               <td>$role</td>
               <td><a href=\"approve.php?id=$userid\">Approve</a></td>
-              <td><a href=\"disapprove.php?id=$userid\">Remove</a></td>
+              <td><a href=\"disapprove.php?id=$userid&roleid=$roleid\">Remove</a></td>
             </tr>";
           }
         }
