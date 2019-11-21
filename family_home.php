@@ -66,7 +66,7 @@
         include "database/db.php";
         $today = date('Y-m-d');
 
-        $sql = "SELECT morning, afternoon, night, breakfast, lunch, dinner FROM `Patients`
+        $sql = "SELECT `group`, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
         JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
         JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
         WHERE `Patients`.familycode = '{$_POST['family_code']}' OR `Patients`.userid = {$_POST['patient_id']}
@@ -100,7 +100,31 @@
               echo "<td>No appointment</td>";
             }
             
-            echo "<td>Caregiver Name not yet implemented</td>";
+            $group = $row['group'];
+
+            $caregiverquery = "";
+            if($group == 1){
+              $caregiverquery = "SELECT caregiver1id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            } elseif($group == 2){
+              $caregiverquery = "SELECT caregiver2id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            } elseif($group == 3){
+              $caregiverquery = "SELECT caregiver3id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            } elseif($group == 4){
+              $caregiverquery = "SELECT caregiver4id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            }
+
+            $caregiverresult = mysqli_query($conn, $caregiverquery);
+            $caregiverResultCheck = mysqli_num_rows($caregiverresult);
+            if($caregiverResultCheck > 0){
+              $caregiverrow = mysqli_fetch_assoc($caregiverresult);
+              echo "<td>{$caregiverrow['fname']} {$caregiverrow['lname']}</td>";
+            } else {
+              echo "<td>No caregiver assigned</td>";
+            }
 
             if($row['morning'] == 1){
               echo "<td>✔️</td>";
