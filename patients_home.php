@@ -40,16 +40,6 @@
       <input type="submit" name="submit">
     </form>
 
-    <!-- This is where we put the table result from the post query (should also spin up using the current date if no post was sent) -->
-    <table>
-      <tr>
-        <th>Morning</th>
-        <th>Afternoon</th>
-        <th>Night</th>
-        <th>Breakfast</th>
-        <th>Lunch</th>
-        <th>Dinner</th>
-      </tr>
     <?php
       if (isset($_POST['submit'])) {
         $date = $_POST['date'];
@@ -57,45 +47,123 @@
         $date = date('Y-m-d');
       }
 
-      $reports_query = "SELECT * FROM Reports r WHERE r.date = '$date' AND r.patientid = {$_SESSION['user']};";
-      $result = mysqli_query($conn, $reports_query);
-      $resultCheck = mysqli_num_rows($result);
-      if($resultCheck>0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          echo "<tr>";
-          if ($row['morning'] == 1) {
-            echo "<td><input type='checkbox' checked onclick='return false;'></td>";
-          } else {
-            echo "<td><input type='checkbox' onclick='return false;'></td>";
+      echo "<table>
+          <tr>
+            <th>Doctor's Name</th>
+            <th>Doctor's Appointment</th>
+            <th>Caregiver's Name</th>
+            <th>Morning Medicine</th>
+            <th>Afternoon Medicine</th>
+            <th>Night Medicine</th>
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Dinner</th>
+          </tr>";
+
+        include "database/db.php";
+        $today = date('Y-m-d');
+
+        $sql = "SELECT `group`, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
+        JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
+        JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
+        WHERE `Patients`.userid = {$id}
+        AND `Reports`.`date` = '$date';";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+
+        $sql2 = "SELECT isfinished, doctorid, `Users`.fname AS fname, `Users`.lname AS lname FROM `Appointments`
+        JOIN `Users` ON `Appointments`.doctorid = `Users`.id
+        WHERE patientid = {$id}
+        AND `Appointments`.`date` = '$date';";
+        $result2 = mysqli_query($conn, $sql2);
+        $resultCheck2 = mysqli_num_rows($result2);
+
+        
+        echo "<tr>";
+
+        if($resultCheck > 0){
+          while($row = mysqli_fetch_assoc($result)){
+            if($resultCheck2 > 0){
+              $row2 = mysqli_fetch_assoc($result2);
+              echo "<td>{$row2['fname']} {$row2['lname']}</td>";
+              
+              if($row2['isfinished'] == 1){
+                echo "<td>✔️</td>";
+              } else {
+                echo "<td>❌</td>";
+              }
+            } else {
+              echo "<td>No appointment</td>";
+              echo "<td>No appointment</td>";
+            }
+            
+            $group = $row['group'];
+
+            $caregiverquery = "";
+            if($group == 1){
+              $caregiverquery = "SELECT caregiver1id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            } elseif($group == 2){
+              $caregiverquery = "SELECT caregiver2id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            } elseif($group == 3){
+              $caregiverquery = "SELECT caregiver3id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            } elseif($group == 4){
+              $caregiverquery = "SELECT caregiver4id, fname, lname FROM `Roster`
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+            }
+
+            $caregiverresult = mysqli_query($conn, $caregiverquery);
+            $caregiverResultCheck = mysqli_num_rows($caregiverresult);
+            if($caregiverResultCheck > 0){
+              $caregiverrow = mysqli_fetch_assoc($caregiverresult);
+              echo "<td>{$caregiverrow['fname']} {$caregiverrow['lname']}</td>";
+            } else {
+              echo "<td>No caregiver assigned</td>";
+            }
+
+            if($row['morning'] == 1){
+              echo "<td>✔️</td>";
+            } else {
+              echo "<td>❌</td>";
+            }
+
+            if($row['afternoon'] == 1){
+              echo "<td>✔️</td>";
+            } else {
+              echo "<td>❌</td>";
+            }
+
+            if($row['night'] == 1){
+              echo "<td>✔️</td>";
+            } else {
+              echo "<td>❌</td>";
+            }
+
+            if($row['breakfast'] == 1){
+              echo "<td>✔️</td>";
+            } else {
+              echo "<td>❌</td>";
+            }
+
+            if($row['lunch'] == 1){
+              echo "<td>✔️</td>";
+            } else {
+              echo "<td>❌</td>";
+            }
+
+            if($row['dinner'] == 1){
+              echo "<td>✔️</td>";
+            } else {
+              echo "<td>❌</td>";
+            }
+
+            echo "</tr>";
           }
-          if ($row['afternoon'] == 1) {
-            echo "<td><input type='checkbox' checked onclick='return false;'></td>";
-          } else {
-            echo "<td><input type='checkbox' onclick='return false;'></td>";
-          }
-          if ($row['night'] == 1) {
-            echo "<td><input type='checkbox' checked onclick='return false;'></td>";
-          } else {
-            echo "<td><input type='checkbox' onclick='return false;'></td>";
-          }
-          if ($row['breakfast'] == 1) {
-            echo "<td><input type='checkbox' checked onclick='return false;'></td>";
-          } else {
-            echo "<td><input type='checkbox' onclick='return false;'></td>";
-          }
-          if ($row['lunch'] == 1) {
-            echo "<td><input type='checkbox' checked onclick='return false;'></td>";
-          } else {
-            echo "<td><input type='checkbox' onclick='return false;'></td>";
-          }
-          if ($row['dinner'] == 1) {
-            echo "<td><input type='checkbox' checked onclick='return false;'></td>";
-          } else {
-            echo "<td><input type='checkbox' onclick='return false;'></td>";
-          }
-          echo "</tr>";
         }
-      }
+
+        echo "</table>";
     ?>
     </table>
 
