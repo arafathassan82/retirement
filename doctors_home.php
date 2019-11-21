@@ -61,7 +61,7 @@
         include "$root/retirement-home/database/db.php";
         $date = date('Y-m-d');
 
-        $sql_query = "SELECT * FROM Appointments a JOIN Users u ON u.id = a.patientid WHERE doctorid = {$_SESSION['user']} AND date < '$date' ";
+        $sql_query = "SELECT * FROM Appointments a JOIN Users u ON u.id = a.patientid WHERE doctorid = {$_SESSION['user']} AND date <= '$date' AND isfinished = 1 ";
         $sql_arr = array();
         if(isset($_POST['fname_query']) and $_POST['fname_query'] != "") {
           $sql_arr["fname"] = $_POST['fname_query'];
@@ -126,7 +126,7 @@
           $post_date = date('Y-m-d');
         }
         $date = date('Y-m-d');
-        $sql = "SELECT fname, lname, a.date FROM Appointments a JOIN Users u ON a.patientid = u.id WHERE a.date <= '$post_date' AND a.date >= '$date' AND a.doctorid = {$_SESSION['user']};";
+        $sql = "SELECT fname, lname, a.date FROM Appointments a JOIN Users u ON a.patientid = u.id WHERE a.date <= '$post_date' AND a.date >= '$date' AND a.doctorid = {$_SESSION['user']} AND isfinished = 0;";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         if($resultCheck>0) {
