@@ -10,7 +10,7 @@
     $date = date('Y-m-d');
     if ($row['date'] != $date) {
       // update everybody's due, and update the current date in PaymentUpdate
-      $update_daily_payments = "UPDATE Patients, PaymentUpdate SET due = (due + (10 * (CAST(DATEDIFF('$date', date) AS INTEGER)))), date = '$date';";
+      $update_daily_payments = "UPDATE Patients, PaymentUpdate SET due = (due + (10 * (CAST(DATEDIFF('$date', date) AS INTEGER)))), date = '$date' WHERE admissiondate <= date;";
       mysqli_query($conn, $update_daily_payments);
     }
   }
