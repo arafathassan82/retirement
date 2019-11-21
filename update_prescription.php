@@ -6,10 +6,16 @@
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $apptid = $row['id'];
+            $finished_status = $row['isfinished'];
+            $patient = $row['patientid'];
             $resultCheck = mysqli_num_rows($result);
-            
+
             if($resultCheck > 0){
-                $nextsql = "UPDATE `Appointments` SET `morning` = '{$_POST['morning']}', `afternoon` = '{$_POST['afternoon']}', `night` = '{$_POST['night']}', `comment` = '{$_POST['comment']}', `isfinished` = 1 WHERE id = $apptid;";
+                if ($isfinished == 0) {
+                  $nextsql = "UPDATE `Appointments` `a`, `Patients` `p` SET `due` = (`due` + 50), `morning` = '{$_POST['morning']}', `afternoon` = '{$_POST['afternoon']}', `night` = '{$_POST['night']}', `comment` = '{$_POST['comment']}', `isfinished` = 1 WHERE a.id = $apptid AND p.userid = $patient;";
+                } else {
+                  $nextsql = "UPDATE `Appointments` `a` SET `morning` = '{$_POST['morning']}', `afternoon` = '{$_POST['afternoon']}', `night` = '{$_POST['night']}', `comment` = '{$_POST['comment']}', `isfinished` = 1 WHERE a.id = $apptid";
+                }
                 mysqli_query($conn, $nextsql);
             }
         }
