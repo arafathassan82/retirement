@@ -64,39 +64,44 @@
           </tr>";
 
         include "database/db.php";
+        $today = date('Y-m-d');
 
         $sql = "SELECT morning, afternoon, night, breakfast, lunch, dinner FROM `Patients`
         JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
         JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
-        WHERE `Patients`.familycode = '{$_POST['family_code']}' OR `Patients`.userid = {$_POST['patient_id']};";
+        WHERE `Patients`.familycode = '{$_POST['family_code']}' OR `Patients`.userid = {$_POST['patient_id']}
+        AND `Reports`.`date` = '$today';";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
         $sql2 = "SELECT isfinished, doctorid, `Users`.fname AS fname, `Users`.lname AS lname FROM `Appointments`
         JOIN `Users` ON `Appointments`.doctorid = `Users`.id
         WHERE patientid = {$_POST['patient_id']}
-        ORDER BY `date` ASC;";
+        AND `Appointments`.`date` = '$today';";
         $result2 = mysqli_query($conn, $sql2);
         $resultCheck2 = mysqli_num_rows($result2);
 
         
         echo "<tr>";
 
-        if($resultCheck2 > 0){
-          $row2 = mysqli_fetch_assoc($result2);
-          echo "<td>{$row2['fname']} {$row2['lname']}</td>";
-          
-          if($row2['isfinished'] == 1){
-            echo "<td>✔️</td>";
-          } else {
-            echo "<td>❌</td>";
-          }
-        }
-        
-        echo "<td>Caregiver Name not yet implemented</td>";
-
         if($resultCheck > 0){
-          while($row = mysqli_fetch_assoc($result)){    
+          while($row = mysqli_fetch_assoc($result)){
+            if($resultCheck2 > 0){
+              $row2 = mysqli_fetch_assoc($result2);
+              echo "<td>{$row2['fname']} {$row2['lname']}</td>";
+              
+              if($row2['isfinished'] == 1){
+                echo "<td>✔️</td>";
+              } else {
+                echo "<td>❌</td>";
+              }
+            } else {
+              echo "<td>No appointment</td>";
+              echo "<td>No appointment</td>";
+            }
+            
+            echo "<td>Caregiver Name not yet implemented</td>";
+
             if($row['morning'] == 1){
               echo "<td>✔️</td>";
             } else {
