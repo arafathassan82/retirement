@@ -28,6 +28,7 @@
 
       echo "<table>
           <tr>
+            <th>Patient's Name</th>
             <th>Doctor's Name</th>
             <th>Doctor's Appointment</th>
             <th>Caregiver's Name</th>
@@ -52,9 +53,10 @@
           while($patientrow = mysqli_fetch_assoc($patientsresult)){
             $id = $patientrow['userid'];
 
-            $sql = "SELECT `group`, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
+            $sql = "SELECT `fname`, `lname`, `group`, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
             JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
             JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
+            JOIN `Users` ON `Patients`.userid = `Users`.`id`
             WHERE `Patients`.userid = {$id}
             AND `Reports`.`date` = '$date';";
             $result = mysqli_query($conn, $sql);
@@ -72,6 +74,8 @@
 
             if($resultCheck > 0){
               while($row = mysqli_fetch_assoc($result)){
+                echo "<td>{$row['fname']} {$row['lname']}</td>";
+
                 if($resultCheck2 > 0){
                   $row2 = mysqli_fetch_assoc($result2);
                   echo "<td>{$row2['fname']} {$row2['lname']}</td>";
