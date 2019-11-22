@@ -13,9 +13,9 @@
         if ($_SESSION['role'] != 5) {
           header("Location: home.php");
         }
-
-        include 'database/db.php';
-        $dailyreportscheck = "SELECT `date` FROM `Reports` ORDER BY `date` ASC;";
+      }
+      include 'database/db.php';
+        $dailyreportscheck = "SELECT `date` FROM `Reports` ORDER BY `date` DESC;";
         $result = mysqli_query($conn, $dailyreportscheck);
         $resultCheck = mysqli_num_rows($result);
 
@@ -36,7 +36,6 @@
             }
           }
         }
-      }
     ?>
     <h1>Home</h1>
     <form method="post">
