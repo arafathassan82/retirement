@@ -13,9 +13,9 @@
         if ($_SESSION['role'] != 5) {
           header("Location: home.php");
         }
-
-        include 'database/db.php';
-        $dailyreportscheck = "SELECT `date` FROM `Reports` ORDER BY `date` ASC;";
+      }
+      include 'database/db.php';
+        $dailyreportscheck = "SELECT `date` FROM `Reports` ORDER BY `date` DESC;";
         $result = mysqli_query($conn, $dailyreportscheck);
         $resultCheck = mysqli_num_rows($result);
 
@@ -36,7 +36,6 @@
             }
           }
         }
-      }
     ?>
     <h1>Home</h1>
     <form method="post">
@@ -108,13 +107,13 @@
               JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
             } elseif($group == 2){
               $caregiverquery = "SELECT caregiver2id, fname, lname FROM `Roster`
-              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver2id;";
             } elseif($group == 3){
               $caregiverquery = "SELECT caregiver3id, fname, lname FROM `Roster`
-              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver3id;";
             } elseif($group == 4){
               $caregiverquery = "SELECT caregiver4id, fname, lname FROM `Roster`
-              JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+              JOIN `Users` ON `Users`.id = `Roster`.caregiver4id;";
             }
 
             $caregiverresult = mysqli_query($conn, $caregiverquery);
