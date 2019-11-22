@@ -74,85 +74,87 @@
 
             if($resultCheck > 0){
               while($row = mysqli_fetch_assoc($result)){
-                echo "<td>{$row['fname']} {$row['lname']}</td>";
+                if($row['morning'] == 0 || $row['afternoon'] == 0 || $row['night'] == 0 || $row['morning'] == 0 || $row['breakfast'] == 0 || $row['lunch'] == 0 || $row['dinner'] == 0){
+                  echo "<td>{$row['fname']} {$row['lname']}</td>";
 
-                if($resultCheck2 > 0){
-                  $row2 = mysqli_fetch_assoc($result2);
-                  echo "<td>{$row2['fname']} {$row2['lname']}</td>";
+                  if($resultCheck2 > 0){
+                    $row2 = mysqli_fetch_assoc($result2);
+                    echo "<td>{$row2['fname']} {$row2['lname']}</td>";
+                    
+                    if($row2['isfinished'] == 1){
+                      echo "<td>✔️</td>";
+                    } else {
+                      echo "<td>❌</td>";
+                    }
+                  } else {
+                    echo "<td>No appointment</td>";
+                    echo "<td>No appointment</td>";
+                  }
                   
-                  if($row2['isfinished'] == 1){
+                  $group = $row['group'];
+
+                  $caregiverquery = "";
+                  if($group == 1){
+                    $caregiverquery = "SELECT caregiver1id, fname, lname FROM `Roster`
+                    JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
+                  } elseif($group == 2){
+                    $caregiverquery = "SELECT caregiver2id, fname, lname FROM `Roster`
+                    JOIN `Users` ON `Users`.id = `Roster`.caregiver2id;";
+                  } elseif($group == 3){
+                    $caregiverquery = "SELECT caregiver3id, fname, lname FROM `Roster`
+                    JOIN `Users` ON `Users`.id = `Roster`.caregiver3id;";
+                  } elseif($group == 4){
+                    $caregiverquery = "SELECT caregiver4id, fname, lname FROM `Roster`
+                    JOIN `Users` ON `Users`.id = `Roster`.caregiver4id;";
+                  }
+
+                  $caregiverresult = mysqli_query($conn, $caregiverquery);
+                  $caregiverResultCheck = mysqli_num_rows($caregiverresult);
+                  if($caregiverResultCheck > 0){
+                    $caregiverrow = mysqli_fetch_assoc($caregiverresult);
+                    echo "<td>{$caregiverrow['fname']} {$caregiverrow['lname']}</td>";
+                  } else {
+                    echo "<td>No caregiver assigned</td>";
+                  }
+
+                  if($row['morning'] == 1){
                     echo "<td>✔️</td>";
                   } else {
                     echo "<td>❌</td>";
                   }
-                } else {
-                  echo "<td>No appointment</td>";
-                  echo "<td>No appointment</td>";
-                }
-                
-                $group = $row['group'];
 
-                $caregiverquery = "";
-                if($group == 1){
-                  $caregiverquery = "SELECT caregiver1id, fname, lname FROM `Roster`
-                  JOIN `Users` ON `Users`.id = `Roster`.caregiver1id;";
-                } elseif($group == 2){
-                  $caregiverquery = "SELECT caregiver2id, fname, lname FROM `Roster`
-                  JOIN `Users` ON `Users`.id = `Roster`.caregiver2id;";
-                } elseif($group == 3){
-                  $caregiverquery = "SELECT caregiver3id, fname, lname FROM `Roster`
-                  JOIN `Users` ON `Users`.id = `Roster`.caregiver3id;";
-                } elseif($group == 4){
-                  $caregiverquery = "SELECT caregiver4id, fname, lname FROM `Roster`
-                  JOIN `Users` ON `Users`.id = `Roster`.caregiver4id;";
-                }
+                  if($row['afternoon'] == 1){
+                    echo "<td>✔️</td>";
+                  } else {
+                    echo "<td>❌</td>";
+                  }
 
-                $caregiverresult = mysqli_query($conn, $caregiverquery);
-                $caregiverResultCheck = mysqli_num_rows($caregiverresult);
-                if($caregiverResultCheck > 0){
-                  $caregiverrow = mysqli_fetch_assoc($caregiverresult);
-                  echo "<td>{$caregiverrow['fname']} {$caregiverrow['lname']}</td>";
-                } else {
-                  echo "<td>No caregiver assigned</td>";
-                }
+                  if($row['night'] == 1){
+                    echo "<td>✔️</td>";
+                  } else {
+                    echo "<td>❌</td>";
+                  }
 
-                if($row['morning'] == 1){
-                  echo "<td>✔️</td>";
-                } else {
-                  echo "<td>❌</td>";
-                }
+                  if($row['breakfast'] == 1){
+                    echo "<td>✔️</td>";
+                  } else {
+                    echo "<td>❌</td>";
+                  }
 
-                if($row['afternoon'] == 1){
-                  echo "<td>✔️</td>";
-                } else {
-                  echo "<td>❌</td>";
-                }
+                  if($row['lunch'] == 1){
+                    echo "<td>✔️</td>";
+                  } else {
+                    echo "<td>❌</td>";
+                  }
 
-                if($row['night'] == 1){
-                  echo "<td>✔️</td>";
-                } else {
-                  echo "<td>❌</td>";
-                }
+                  if($row['dinner'] == 1){
+                    echo "<td>✔️</td>";
+                  } else {
+                    echo "<td>❌</td>";
+                  }
 
-                if($row['breakfast'] == 1){
-                  echo "<td>✔️</td>";
-                } else {
-                  echo "<td>❌</td>";
+                  echo "</tr>";
                 }
-
-                if($row['lunch'] == 1){
-                  echo "<td>✔️</td>";
-                } else {
-                  echo "<td>❌</td>";
-                }
-
-                if($row['dinner'] == 1){
-                  echo "<td>✔️</td>";
-                } else {
-                  echo "<td>❌</td>";
-                }
-
-                echo "</tr>";
               }
             }
           }
