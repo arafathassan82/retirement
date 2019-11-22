@@ -12,6 +12,7 @@
       if ($_SESSION['role'] != 1) {
         header("Location: home.php");
       }
+      include 'update_reports.php';
     ?>
     <h1>Admin's Report</h1>
     <form method="post">

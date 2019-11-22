@@ -17,6 +17,7 @@
         if ($_SESSION['role'] != 6) {
           header("Location: home.php");
         }
+        include 'update_reports.php';
       }
     ?>
     <h1>Home</h1>
