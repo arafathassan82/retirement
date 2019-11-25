@@ -127,3 +127,17 @@ nav {
 .logout:hover {
   background-color: #49beb7;
 }
+
+#role-table th:nth-child(-n+2){
+    background-color: #085f63;
+    color: #f1f1f1;
+    border: 1px solid black;
+}
+
+#role-table td {
+  text-align: center;
+}
+
+.new-role {
+  margin-top: 20px;
+}

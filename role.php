@@ -28,7 +28,7 @@
     ?>
     <h1>Role</h1>
     <!-- table displaying all roles and their access levels -->
-    <table>
+    <table id="role-table">
       <tr>
         <th>Role</th>
         <th>Access Level</th>
@@ -50,7 +50,7 @@
     ?>
     </table>
 
-    <form method="post">
+    <form method="post" class="new-role">
       New Role: <input type="text" name="new_role">
       Access Level: <input type="text" name="access_level">
 
