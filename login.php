@@ -47,7 +47,7 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
-  <body id="login">
+  <body class="userform" id="login">
     <main>
       <form method="post">
         <h1>Login</h1>

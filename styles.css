@@ -2,28 +2,28 @@
     box-sizing: border-box;
 }
 html {
-    /* background-color: #f5e1da; */
+    /* background-color: .f5e1da; */
 }
-#login {
+.userform {
     overflow: hidden;
     margin: 0;
 }
-#login main {
+.userform main {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     font-size: 1.2rem;
 }
-#login h1 {
+.userform h1 {
     text-align: center;
 }
-#login form {
+.userform form {
     background-color: #f5e1da;
     padding: 2rem;
     border-radius: 10px;
 }
-#login form input {
+.userform form input, .userform form select {
     width: 100%;
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
@@ -39,4 +39,13 @@ html {
 }
 #bgimg img {
     height: 100%;
+}
+#register main {
+    font-size: 1rem;
+}
+#register form {
+    width: 80%;
+}
+#register form input, #register form select {
+    font-size: 1rem;
 }
