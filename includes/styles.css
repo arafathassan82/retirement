@@ -19,6 +19,10 @@
   background-color: #49beb7;
 }
 
+.nav-li form {
+  margin-bottom: 0px;
+}
+
 nav {
   background-color: #085f63;
   margin-top: -16px;

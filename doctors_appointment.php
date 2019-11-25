@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="includes/styles.css">
     <title>Doctor's Appointment</title>
   </head>
   <body>
@@ -28,7 +29,7 @@
             $id = $row['id'];
             $fname = $row['fname'];
             $lname = $row['lname'];
-            
+
             echo "Patient ID: <input type=\"text\" name=\"patient_id\" value=\"$id\" readonly>";
             echo "Patient Name: <input type=\"text\" name=\"name\" value=\"$fname $lname\" readonly>";
             echo "Doctor: <input type=\"text\" name=\"doctor\" value=\"{$_POST['doctor']}\" readonly>";
@@ -56,7 +57,7 @@
                 echo "<option value=\"$id\">$fname $lname</option>";
             }
         }
-        
+
         $today = date("Y-m-d");
         echo "</select>
         Date: <input type=\"date\" name=\"date\" value=\"$today\">";
