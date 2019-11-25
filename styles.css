@@ -1,12 +1,10 @@
 * {
     box-sizing: border-box;
 }
-html {
-    /* background-color: .f5e1da; */
-}
 .userform {
     overflow: hidden;
     margin: 0;
+    width: 100%;
 }
 .userform main {
     display: flex;
@@ -14,6 +12,7 @@ html {
     justify-content: center;
     height: 100vh;
     font-size: 1.2rem;
+    width: 100%;
 }
 .userform h1 {
     text-align: center;
