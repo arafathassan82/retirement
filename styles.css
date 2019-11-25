@@ -40,6 +40,7 @@ html {
 #bgimg img {
     height: 100%;
 }
+
 #register main {
     font-size: 1rem;
 }
@@ -48,4 +49,34 @@ html {
 }
 #register form input, #register form select {
     font-size: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+}
+table tr td {
+    padding: 0.4rem;
+}
+#approvaltable th:nth-child(-n+2){
+    background-color: #085f63;
+    color: #f1f1f1;
+    border: 1px solid black;
+}
+#approvaltable a {
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: 2px;
+    border-radius: 3px;
+}
+#approvaltable a#approve {
+    background-color: #195a09;
+}
+#approvaltable a#approve:hover {
+    background-color: #348b1e;
+}
+#approvaltable a#remove {
+    background-color: #7a0d0d;
+}
+#approvaltable a#remove:hover {
+    background-color: #9c2c2c;
 }
