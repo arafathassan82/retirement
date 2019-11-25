@@ -40,15 +40,17 @@
       $nav_arr[] = 'payments';
       $nav_arr[] = 'doctors_appointment';
     } else {
-      $nav_arr[] = 'home';
       $nav_arr[] = 'login';
+      $nav_arr[] = 'home';
     }
   }
 ?>
 
 <nav>
   <?php
+    echo '<ul class="nav-list">';
     foreach($nav_arr as $value) {
+      echo '<li class="nav-li">';
       if ($value == 'login') {
         echo '<a href="login.php" class="nav-anchor">Login</a>';
       } else if ($value == 'home') {
@@ -66,7 +68,7 @@
       } else if ($value == 'new_roster') {
         echo '<a href="new_roster.php" class="nav-anchor">New Roster</a>';
       } else if ($value == 'role') {
-        echo '<a href="role.php" class="nav-anchor">Login</a>';
+        echo '<a href="role.php" class="nav-anchor">Roles</a>';
       } else if ($value == 'employee') {
         echo '<a href="employee.php" class="nav-anchor">Employees</a>';
       } else if ($value == 'patients') {
@@ -84,12 +86,15 @@
       } else if ($value == 'patient_of_doctor'){
         echo '<a href="patient_of_doctor.php" class="nav-anchor">Patient of Doctor</a>';
       }
+      echo '</li>';
     }
 
     if(isset($_SESSION['role'])) {
-      echo "<form method='post'>";
-        echo "<input type='submit' name='logout' value='logout'>";
-      echo "</form>";
+
+      echo '<li class="nav-li">', "<form method='post'>";
+        echo "<input type='submit' name='logout' value='Logout' class=\"logout\">";
+      echo "</form>", "</li>";
     }
+    echo '</ul>';
   ?>
 </nav>
