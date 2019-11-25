@@ -75,7 +75,6 @@
 
         <input type="submit" name="register" id="submit">
         <section id="bgimg"><img src="https://www.espritlifestyle.com/app/uploads/2018/05/DSC_1804-e1530027414598.jpg" alt="retirement home"></section>
-        <a href="home.php">Go Home</a>
       </form>
 
     </main>
