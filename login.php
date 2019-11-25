@@ -45,16 +45,19 @@
   <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
-  <body>
-    <h1>Login</h1>
-    <form method="post">
-      Email: <input type="text" name="email">
-      Password: <input type="password" name="password">
+  <body id="login">
+    <main>
+      <form method="post">
+        <h1>Login</h1>
+        Email: <input type="text" name="email">
+        Password: <input type="password" name="password">
 
-      <input type="submit" name="login">
+        <input type="submit" name="login">
 
-      <a href="home.php">Go Home</a>
-    </form>
+        Not a user? <a href="register.php">Register</a>
+      </form>
+    </main>
   </body>
 </html>
