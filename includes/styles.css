@@ -1,3 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+.userform {
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+}
+.userform main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 1.2rem;
+    width: 100%;
+}
+.userform h1 {
+    text-align: center;
+}
+.userform form {
+    background-color: #f5e1da;
+    padding: 2rem;
+    border-radius: 10px;
+}
+.userform form input, .userform form select {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+#bgimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -10;
+    position: absolute;
+    top: -30%;
+    left: 0;
+}
+#bgimg img {
+    height: 100%;
+}
+
+#register main {
+    font-size: 1rem;
+}
+#register form {
+    width: 80%;
+}
+#register form input, #register form select {
+    font-size: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+}
+table tr td {
+    padding: 0.4rem;
+}
+#approvaltable th:nth-child(-n+2){
+    background-color: #085f63;
+    color: #f1f1f1;
+    border: 1px solid black;
+}
+#approvaltable a {
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: 2px;
+    border-radius: 3px;
+}
+#approvaltable a#approve {
+    background-color: #195a09;
+}
+#approvaltable a#approve:hover {
+    background-color: #348b1e;
+}
+#approvaltable a#remove {
+    background-color: #7a0d0d;
+}
+#approvaltable a#remove:hover {
+    background-color: #9c2c2c;
+}
 .nav-anchor {
   font-size: 0.9em;
   text-decoration: none;

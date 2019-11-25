@@ -39,40 +39,44 @@
     <meta charset="utf-8">
     <title>Register</title>
     <script type="text/javascript" src="register.js"></script>
+    <link rel="stylesheet" type="text/css" href="includes/styles.css">
   </head>
-  <body>
-    <form method="post" id="registerform" action="register.php">
-      <select name="role" id="role" onchange="displayExtras();">
-        <!-- php which generates options based on the roles in the database -->
+  <body class="userform" id="register">
+    <main>
+      <form method="post" id="registerform" action="register.php">
+        <h1>Register</h1>
+        <select name="role" id="role" onchange="displayExtras();">
+          <!-- php which generates options based on the roles in the database -->
 
-        <?php
-          include_once "database/db.php";
-          $roles = "SELECT * FROM `Roles`;";
-          $result = mysqli_query($conn, $roles);
-          $resultCheck = mysqli_num_rows($result);
+          <?php
+            include_once "database/db.php";
+            $roles = "SELECT * FROM `Roles`;";
+            $result = mysqli_query($conn, $roles);
+            $resultCheck = mysqli_num_rows($result);
 
-          if($resultCheck > 0){
-            while($row = mysqli_fetch_assoc($result)){
-              $roleid = $row['id'];
-              $rolename = $row['name'];
+            if($resultCheck > 0){
+              while($row = mysqli_fetch_assoc($result)){
+                $roleid = $row['id'];
+                $rolename = $row['name'];
 
-              echo "<option value='$roleid'>$rolename</option>";
+                echo "<option value='$roleid'>$rolename</option>";
+              }
             }
-          }
-        ?>
+          ?>
 
-      </select>
-      First Name: <input type="text" name="fName">
-      Last Name: <input type="text" name="lName">
-      Email ID: <input type="text" name="email">
-      Phone: <input type="text" name="phone">
-      Password: <input type="password" name="password">
-      Date of Birth: <input type="date" name="date">
-      <!-- Family code, if the role is a family member -->
+        </select>
+        First Name: <input type="text" name="fName">
+        Last Name: <input type="text" name="lName">
+        Email ID: <input type="text" name="email">
+        Phone: <input type="text" name="phone">
+        Password: <input type="password" name="password">
+        Date of Birth: <input type="date" name="date">
+        <!-- Family code, if the role is a family member -->
 
-      <input type="submit" name="register" id="submit">
-    </form>
+        <input type="submit" name="register" id="submit">
+        <section id="bgimg"><img src="https://www.espritlifestyle.com/app/uploads/2018/05/DSC_1804-e1530027414598.jpg" alt="retirement home"></section>
+      </form>
 
-    <a href="home.php">Go Home</a>
+    </main>
   </body>
 </html>
