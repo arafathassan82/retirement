@@ -2,6 +2,7 @@
 <html lang="" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="includes/styles.css">
     <title>Home</title>
   </head>
   <body>
@@ -59,7 +60,7 @@
         $result2 = mysqli_query($conn, $sql2);
         $resultCheck2 = mysqli_num_rows($result2);
 
-        
+
         echo "<tr>";
 
         if($resultCheck > 0){
@@ -67,7 +68,7 @@
             if($resultCheck2 > 0){
               $row2 = mysqli_fetch_assoc($result2);
               echo "<td>{$row2['fname']} {$row2['lname']}</td>";
-              
+
               if($row2['isfinished'] == 1){
                 echo "<td>✔️</td>";
               } else {
@@ -77,7 +78,7 @@
               echo "<td>No appointment</td>";
               echo "<td>No appointment</td>";
             }
-            
+
             $group = $row['group'];
 
             $caregiverquery = "";

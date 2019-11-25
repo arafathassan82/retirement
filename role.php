@@ -14,6 +14,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="includes/styles.css">
     <title>Role</title>
   </head>
   <body>

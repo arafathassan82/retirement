@@ -41,56 +41,61 @@
       $nav_arr[] = 'payments';
       $nav_arr[] = 'doctors_appointment';
     } else {
-      $nav_arr[] = 'home';
       $nav_arr[] = 'login';
+      $nav_arr[] = 'home';
     }
   }
 ?>
 
 <nav>
   <?php
+    echo '<ul class="nav-list">';
     foreach($nav_arr as $value) {
+      echo '<li class="nav-li">';
       if ($value == 'login') {
-        echo "<a href='login.php'>Login</a>";
+        echo '<a href="login.php" class="nav-anchor">Login</a>';
       } else if ($value == 'home') {
-        echo "<a href='home.php'>Home</a>";
+        echo '<a href="home.php" class="nav-anchor">Home</a>';
       } else if ($value == 'doctors_home') {
-        echo "<a href='doctors_home.php'>Home</a>";
+        echo '<a href="doctors_home.php" class="nav-anchor">Home</a>';
       } else if ($value == 'patients_home') {
-        echo "<a href='patients_home.php'>Home</a>";
+        echo '<a href="patients_home.php" class="nav-anchor">Home</a>';
       } else if ($value == 'family_home') {
-        echo "<a href='family_home.php'>Home</a>";
+        echo '<a href="family_home.php" class="nav-anchor">Home</a>';
       } else if ($value == 'caregiver_home') {
-        echo "<a href='caregivers_home.php'>Home</a>";
+        echo '<a href="caregivers_home.php" class="nav-anchor">Home</a>';
       } else if ($value == 'roster') {
-        echo "<a href='roster.php'>Roster</a>";
+        echo '<a href="roster.php" class="nav-anchor">Roster</a>';
       } else if ($value == 'new_roster') {
-        echo "<a href='new_roster.php'>New Roster</a>";
+        echo '<a href="new_roster.php" class="nav-anchor">New Roster</a>';
       } else if ($value == 'role') {
-        echo "<a href='role.php'>Login</a>";
+        echo '<a href="role.php" class="nav-anchor">Roles</a>';
       } else if ($value == 'employee') {
-        echo "<a href='employee.php'>Employees</a>";
+        echo '<a href="employee.php" class="nav-anchor">Employees</a>';
       } else if ($value == 'patients') {
-        echo "<a href='patients.php'>Patients</a>";
+        echo '<a href="patients.php" class="nav-anchor">Patients</a>';
       } else if ($value == 'registration_approval') {
-        echo "<a href='registration_approval.php'>Approve Registration</a>";
+        echo '<a href="registration_approval.php" class="nav-anchor">Approve Registration</a>';
       } else if ($value == 'additional_info_of_patient') {
-        echo "<a href='additional_information_of_patient.php'>Additional Info</a>";
+        echo '<a href="additional_information_of_patient.php" class="nav-anchor">Additional Info</a>';
       } else if ($value == 'admins_report') {
-        echo "<a href='admins_report.php'>Admin's Report</a>";
+        echo '<a href="admins_report.php" class="nav-anchor">Admin\'s Report</a>';
       } else if ($value == 'payments') {
-        echo "<a href='payment.php'>Payments</a>";
+        echo '<a href="payment.php" class="nav-anchor">Payments</a>';
       } else if ($value == 'doctors_appointment'){
-        echo "<a href='doctors_appointment.php'>Doctor's Appointment</a>";
+        echo '<a href="doctors_appointment.php" class="nav-anchor">Doctor\'s Appointment</a>';
       } else if ($value == 'patient_of_doctor'){
-        echo "<a href='patient_of_doctor.php'>Patient of Doctor</a>";
+        echo '<a href="patient_of_doctor.php" class="nav-anchor">Patient of Doctor</a>';
       }
+      echo '</li>';
     }
 
     if(isset($_SESSION['role'])) {
-      echo "<form method='post'>";
-        echo "<input type='submit' name='logout' value='logout'>";
-      echo "</form>";
+
+      echo '<li class="nav-li">', "<form method='post'>";
+        echo "<input type='submit' name='logout' value='Logout' class=\"logout\">";
+      echo "</form>", "</li>";
     }
+    echo '</ul>';
   ?>
 </nav>
