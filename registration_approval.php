@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Registration Approval</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="includes/styles.css">
   </head>
   <body id="approval" class="mainpage">
     <?php

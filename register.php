@@ -39,7 +39,7 @@
     <meta charset="utf-8">
     <title>Register</title>
     <script type="text/javascript" src="register.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="includes/styles.css">
   </head>
   <body class="userform" id="register">
     <main>
