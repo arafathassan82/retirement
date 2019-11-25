@@ -20,10 +20,8 @@
     <form method="post">
       Date: <input name="date" type="date">
       <input type="submit" value="check date" name="submit">
-
-      <!-- when the form is submitted, show the people who are working on that date, like a schedule -->
     </form>
-    <table>
+    <table id='roster-table'>
       <tr>
         <th>Supervisor</th>
         <th>Doctor</th>
@@ -51,27 +49,27 @@
 
             $supervisorresult = mysqli_query($conn, "SELECT fname, lname FROM `Users` WHERE id = $supervisorid;");
             $supervisorrow = mysqli_fetch_assoc($supervisorresult);
-            echo "<th>{$supervisorrow['fname']} {$supervisorrow['lname']}</th>";
+            echo "<td>{$supervisorrow['fname']} {$supervisorrow['lname']}</td>";
 
             $doctorresult = mysqli_query($conn, "SELECT fname, lname FROM `Users` WHERE id = $doctorid;");
             $doctorrow = mysqli_fetch_assoc($doctorresult);
-            echo "<th>{$doctorrow['fname']} {$doctorrow['lname']}</th>";
+            echo "<td>{$doctorrow['fname']} {$doctorrow['lname']}</td>";
 
             $caregiver1result = mysqli_query($conn, "SELECT fname, lname FROM `Users` WHERE id = $caregiver1id;");
             $caregiver1row = mysqli_fetch_assoc($caregiver1result);
-            echo "<th>{$caregiver1row['fname']} {$caregiver1row['lname']}</th>";
+            echo "<td>{$caregiver1row['fname']} {$caregiver1row['lname']}</td>";
 
             $caregiver2result = mysqli_query($conn, "SELECT fname, lname FROM `Users` WHERE id = $caregiver2id;");
             $caregiver2row = mysqli_fetch_assoc($caregiver2result);
-            echo "<th>{$caregiver2row['fname']} {$caregiver2row['lname']}</th>";
+            echo "<td>{$caregiver2row['fname']} {$caregiver2row['lname']}</td>";
 
             $caregiver3result = mysqli_query($conn, "SELECT fname, lname FROM `Users` WHERE id = $caregiver3id;");
             $caregiver3row = mysqli_fetch_assoc($caregiver3result);
-            echo "<th>{$caregiver3row['fname']} {$caregiver3row['lname']}</th>";
+            echo "<td>{$caregiver3row['fname']} {$caregiver3row['lname']}</td>";
 
             $caregiver4result = mysqli_query($conn, "SELECT fname, lname FROM `Users` WHERE id = $caregiver4id;");
             $caregiver4row = mysqli_fetch_assoc($caregiver4result);
-            echo "<th>{$caregiver4row['fname']} {$caregiver4row['lname']}</th>";
+            echo "<td>{$caregiver4row['fname']} {$caregiver4row['lname']}</td>";
           }
         }
       ?>
