@@ -57,6 +57,7 @@
         <input type="submit" name="login">
 
         Not a user? <a href="register.php">Register</a>
+        <section id="bgimg"><img src="https://www.espritlifestyle.com/app/uploads/2018/05/DSC_1804-e1530027414598.jpg" alt="retirement home"></section>
       </form>
     </main>
   </body>

@@ -4,15 +4,39 @@
 html {
     /* background-color: #f5e1da; */
 }
+#login {
+    overflow: hidden;
+    margin: 0;
+}
 #login main {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    font-size: 1.2rem;
 }
 #login h1 {
     text-align: center;
 }
+#login form {
+    background-color: #f5e1da;
+    padding: 2rem;
+    border-radius: 10px;
+}
 #login form input {
     width: 100%;
     margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+#bgimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -10;
+    position: absolute;
+    top: -30%;
+    left: 0;
+}
+#bgimg img {
+    height: 100%;
 }
