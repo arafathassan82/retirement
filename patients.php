@@ -49,7 +49,7 @@
           <td>
             <input type="text" name="admission_query">
           </td>
-          <td>
+          <td class="form-row-submit">
             <input type="submit" value="submit">
           </td>
         </form>

@@ -26,35 +26,37 @@
         header("Location: home.php");
       }
     ?>
-    <h1>Role</h1>
-    <!-- table displaying all roles and their access levels -->
-    <table>
-      <tr>
-        <th>Role</th>
-        <th>Access Level</th>
-      </tr>
-    <?php
-      $sql = "SELECT name, accesslevel FROM roles;";
-      $result = mysqli_query($conn, $sql);
-      $resultCheck = mysqli_num_rows($result);
-      if($resultCheck>0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          $role = $row['name'];
-          $access = $row['accesslevel'];
-          echo "<tr>";
-          echo "<td>$role</td>";
-          echo "<td>$access</td>";
-          echo "</tr>";
+    <main>
+      <h1>Role</h1>
+      <!-- table displaying all roles and their access levels -->
+      <table id="role-table">
+        <tr>
+          <th>Role</th>
+          <th>Access Level</th>
+        </tr>
+      <?php
+        $sql = "SELECT name, accesslevel FROM roles;";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if($resultCheck>0) {
+          while($row = mysqli_fetch_assoc($result)) {
+            $role = $row['name'];
+            $access = $row['accesslevel'];
+            echo "<tr>";
+            echo "<td>$role</td>";
+            echo "<td>$access</td>";
+            echo "</tr>";
+          }
         }
-      }
-    ?>
-    </table>
+      ?>
+      </table>
 
-    <form method="post">
-      New Role: <input type="text" name="new_role">
-      Access Level: <input type="text" name="access_level">
+      <form method="post" class="new-role">
+        New Role: <input type="text" name="new_role">
+        Access Level: <input type="text" name="access_level">
 
-      <input type="submit" value="Ok" name="role">
-    </form>
+        <input type="submit" value="Ok" name="role">
+      </form>
+    </main>
   </body>
 </html>

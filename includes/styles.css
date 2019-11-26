@@ -127,3 +127,53 @@ nav {
 .logout:hover {
   background-color: #49beb7;
 }
+
+#role-table th:nth-child(-n+2){
+    background-color: #085f63;
+    color: #f1f1f1;
+    border: 1px solid black;
+}
+
+#role-table td {
+  text-align: center;
+}
+
+#roster-table {
+  margin-top: 10px;
+}
+
+th {
+    background-color: #085f63;
+    color: #f1f1f1;
+    border: 1px solid black;
+    padding: 2px;
+}
+
+#roster-table td {
+  text-align: center;
+}
+
+.new-role {
+  margin-top: 20px;
+}
+
+input[type="submit"] {
+  background-color: #085f63;
+  color: white;
+  transition: 0.3s;
+  border-radius: 5px;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background-color: #49beb7;
+}
+
+/* use this on any submit button that is part of searching a table, so it's not gray */
+.form-row-submit {
+  background-color: white;
+}
+
+tr:nth-of-type(2n + 2) {
+  background-color: #f1f1f1;
+}
