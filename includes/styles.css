@@ -169,6 +169,7 @@ input[type="submit"]:hover {
   background-color: #49beb7;
 }
 
+/* use this on any submit button that is part of searching a table, so it's not gray */
 .form-row-submit {
   background-color: white;
 }
