@@ -196,3 +196,12 @@ input[type="submit"]:hover {
 tr:nth-of-type(2n + 2) {
   background-color: #f1f1f1;
 }
+#payment {
+    text-align: center;
+    border: 1px solid #c7c7c7;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    box-shadow: 5px 5px 5px #acacac;
+    width: 300px;
+}
