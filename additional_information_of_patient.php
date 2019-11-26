@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="includes/styles.css">
     <title>Additional Information of Patient</title>
   </head>
-  <body>
+  <body id="additionalinfo">
+    <main>
     <?php
       $root = $_SERVER['DOCUMENT_ROOT'];
       include "$root/retirement-home/includes/nav.php";
@@ -14,7 +15,8 @@
         header("Location: home.php");
       }
     ?>
-    <form method="post">
+    <h1>Additional Information of Patient</h1>
+    <form method="post" class="grayblock">
       <!-- Patient Name displays when a patient is selected -->
       <?php
       if(isset($_POST['patient_id'])){
@@ -57,5 +59,6 @@
       }
       ?>
     </form>
+    </main>
   </body>
 </html>

@@ -131,20 +131,19 @@ nav {
 #new_roster input, #new_roster select {
     margin-right: 1rem;
 }
-select {
-    border: 1px solid #085f63;
-    background-color: #085f63;
-    color: #f1f1f1;
+form.grayblock {
+    display: inline-block;
+    background-color: #f1f1f1;
+    width: 600px;
+    padding: 1rem;
 }
-select:hover {
-    background-color: #49beb7;
-    color: black;
+form.grayblock input, form.grayblock select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
 }
-#supervisordoctor, #caregivers {
-    margin-bottom: .5rem;
-}
-#register select {
-    border: 1px solid gray;
-    background-color: white;
-    color: black;
+@media only screen and (max-width: 600px) {
+    form.grayblock {
+        width: 100%;
+    }
 }

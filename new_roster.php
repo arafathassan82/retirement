@@ -23,7 +23,8 @@
       }
     ?>
     <main>
-      <form method="post">
+      <h1>New Roster</h1>
+      <form method="post" class="grayblock">
         <section id="date">
           Date: <input type="date" name="date" value="<?php $today = date("Y-m-d"); echo $today; ?>">
         </section>
