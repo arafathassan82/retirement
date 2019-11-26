@@ -128,6 +128,25 @@ nav {
   background-color: #49beb7;
 }
 
+#new_roster input, #new_roster select {
+    margin-right: 1rem;
+}
+form.grayblock {
+    display: inline-block;
+    background-color: #f1f1f1;
+    width: 600px;
+    padding: 1rem;
+}
+form.grayblock input, form.grayblock select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+@media only screen and (max-width: 600px) {
+    form.grayblock {
+        width: 100%;
+    }
+}
 #role-table th:nth-child(-n+2){
     background-color: #085f63;
     color: #f1f1f1;
