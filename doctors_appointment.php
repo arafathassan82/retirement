@@ -14,7 +14,9 @@
         header("Location: home.php");
       }
     ?>
-    <form method="post">
+    <main>
+      <h1>Doctor's Appointment</h1>
+    <form method="post" class="grayblock">
       <!-- Patient Name displays when a patient is selected -->
       <?php
       if(isset($_POST['patient_id'])){
@@ -74,5 +76,6 @@
       }
       ?>
     </form>
+    </main>
   </body>
 </html>
