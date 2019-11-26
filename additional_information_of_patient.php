@@ -40,9 +40,10 @@
           header("Location: additional_information_of_patient.php");
         }
       } else {
+        $today = date('Y-m-d');
         echo "Patient ID: <input type=\"number\" name=\"patient_id\">
         Group: <input type=\"number\" name=\"group\">
-        Admission Date: <input type=\"date\" name=\"admission_date\">";
+        Admission Date: <input type=\"date\" name=\"admission_date\" value=\"$today\">";
         echo "<input type=\"submit\" name=\"info_of_patient\">";
       }
 
