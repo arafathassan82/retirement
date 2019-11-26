@@ -169,7 +169,10 @@ input[type="submit"]:hover {
   background-color: #49beb7;
 }
 
-.form-row {
-  background-color: #49beb7;
-  color: white;
+.form-row-submit {
+  background-color: white;
+}
+
+tr:nth-of-type(2n + 2) {
+  background-color: #f1f1f1;
 }

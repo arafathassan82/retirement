@@ -48,7 +48,7 @@
           <td>
             <input type="number" name="salary_query">
           </td>
-          <td>
+          <td class="form-row-submit">
             <input type="submit" value="submit">
           </td>
         </form>
