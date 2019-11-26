@@ -127,3 +127,24 @@ nav {
 .logout:hover {
   background-color: #49beb7;
 }
+
+#new_roster input, #new_roster select {
+    margin-right: 1rem;
+}
+select {
+    border: 1px solid #085f63;
+    background-color: #085f63;
+    color: #f1f1f1;
+}
+select:hover {
+    background-color: #49beb7;
+    color: black;
+}
+#supervisordoctor, #caregivers {
+    margin-bottom: .5rem;
+}
+#register select {
+    border: 1px solid gray;
+    background-color: white;
+    color: black;
+}
