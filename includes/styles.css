@@ -142,7 +142,7 @@ nav {
   margin-top: 10px;
 }
 
-#roster-table th {
+th {
     background-color: #085f63;
     color: #f1f1f1;
     border: 1px solid black;
@@ -167,4 +167,9 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #49beb7;
+}
+
+.form-row {
+  background-color: #49beb7;
+  color: white;
 }

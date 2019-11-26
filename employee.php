@@ -31,7 +31,7 @@
         <th>Role</th>
         <th>Salary</th>
       </tr>
-      <tr>
+      <tr class="form-row">
         <form method = "post">
           <td>
             <input type="number" name="id_query">
