@@ -16,7 +16,8 @@
     <title>Select Patient</title>
 </head>
 <body>
-    <span>Select a patient to view their appointments</span>
+  <main class="grayblock">
+    <span class="heading">Select a patient to view their appointments</span>
     <ul>
         <?php
             include_once "database/db.php";
@@ -25,10 +26,11 @@
             $resultCheck = mysqli_num_rows($result);
             if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                    echo "<li><a href=\"patient_of_doctor.php?id={$row['id']}\">{$row['fname']} {$row['lname']}</a></li>";
+                    echo "<li class=\"patient-li\"><a href=\"patient_of_doctor.php?id={$row['id']}\" class=\"patient-list\">{$row['fname']} {$row['lname']}</a></li>";
                 }
             }
         ?>
     </ul>
+  </main>
 </body>
 </html>
