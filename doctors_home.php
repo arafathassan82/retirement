@@ -33,25 +33,25 @@
         <tr>
           <form method = "post">
             <td>
-              <input type="text" name="fname_query">
+              <input type="text" name="fname_query" value="<?php if(isset($_POST['fname_query'])) echo $_POST['fname_query']; ?>">
             </td>
             <td>
-              <input type="text" name="lname_query">
+              <input type="text" name="lname_query" value="<?php if(isset($_POST['lname_query'])) echo $_POST['lname_query']; ?>">
             </td>
             <td>
-              <input type="date" name="date_query">
+              <input type="date" name="date_query" value="<?php if(isset($_POST['date_query'])) echo $_POST['date_query']; ?>">
             </td>
             <td>
-              <input type="text" name="comment_query">
+              <input type="text" name="comment_query" value="<?php if(isset($_POST['comment_query'])) echo $_POST['comment_query']; ?>">
             </td>
             <td>
-              <input type="text" name="morning_query">
+              <input type="text" name="morning_query" value="<?php if(isset($_POST['morning_query'])) echo $_POST['morning_query']; ?>">
             </td>
             <td>
-              <input type="text" name="afternoon_query">
+              <input type="text" name="afternoon_query" value="<?php if(isset($_POST['afternoon_query'])) echo $_POST['afternoon_query']; ?>">
             </td>
             <td>
-              <input type="text" name="night_query">
+              <input type="text" name="night_query" value="<?php if(isset($_POST['night_query'])) echo $_POST['night_query']; ?>">
             </td>
             <td class="form-row-submit">
               <input type="submit" value="submit">
