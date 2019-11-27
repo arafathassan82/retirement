@@ -34,19 +34,19 @@
       <tr class="form-row">
         <form method = "post">
           <td>
-            <input type="number" name="id_query">
+            <input type="number" name="id_query" value="<?php if(isset($_POST['id_query'])) echo $_POST['id_query']; ?>">
           </td>
           <td>
-            <input type="text" name="fname_query">
+            <input type="text" name="fname_query" value="<?php if(isset($_POST['fname_query'])) echo $_POST['fname_query']; ?>">
           </td>
           <td>
-            <input type="text" name="lname_query">
+            <input type="text" name="lname_query" value="<?php if(isset($_POST['lname_query'])) echo $_POST['lname_query']; ?>">
           </td>
           <td>
-            <input type="text" name="role_query">
+            <input type="text" name="role_query" value="<?php if(isset($_POST['role_query'])) echo $_POST['role_query']; ?>">
           </td>
           <td>
-            <input type="number" name="salary_query">
+            <input type="number" name="salary_query" value="<?php if(isset($_POST['salary_query'])) echo $_POST['salary_query']; ?>">
           </td>
           <td class="form-row-submit">
             <input type="submit" value="submit">
