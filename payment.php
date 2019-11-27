@@ -23,6 +23,7 @@
     <title></title>
   </head>
   <body>
+    <main>
     <?php
       $root = $_SERVER['DOCUMENT_ROOT'];
       include "$root/retirement-home/includes/nav.php";
@@ -32,10 +33,7 @@
       }
     ?>
 
-    <form method="post">
-      Patient ID: <input type="number" name="patientid" value="<?php echo $_POST['patientid']; ?>">
-      <input type="submit" value="patient" name="submit">
-    </form>
+      <h1>Payments</h1>
 
     <!-- display total due for patient sent in from above input -->
     <?php
@@ -45,15 +43,19 @@
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         if($resultCheck > 0){
-          while($row = mysqli_fetch_assoc($result)){
-            echo "Payment Due: {$row['due']}";
-          }
-          echo "<form method='post'>";
-          echo "<input type='number' name='patient' value='{$_POST['patientid']}' hidden>";
+          $row = mysqli_fetch_assoc($result);
+          echo "<form method='post' class='grayblock'>";
+          echo "Patient ID: <input type='number' name='patient' value='{$_POST['patientid']}' hidden>";
           echo "New Payment: <input type='number' name='new_payment'>";
           echo "<input type='submit' name='submit_payment'>";
           echo "</form>";
+          echo "<section id='payment'>Payment Due: \${$row['due']}</section>";
         }
+      } else {
+        echo "<form method='post' class='grayblock'>
+      Patient ID: <input type='number' name='patientid'>
+      <input type='submit' value='Submit' name='submit'>
+    </form>";
       }
     ?>
 
@@ -67,5 +69,6 @@
     ?>
 
     <!-- make sure total due goes up every day (not a thing that is done on HTML) -->
+    </main>
   </body>
 </html>
