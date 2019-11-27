@@ -17,7 +17,7 @@
     ?>
     <h1>Admin's Report</h1>
     <form method="post">
-      Date: <input type="date" name="date">
+      Date: <input type="date" name="date" value="<?php if(isset($_POST['date'])) { echo $_POST['date']; } else { echo date('Y-m-d'); } ?>">
       <input type="submit" name="submit" value="submit">
     </form>
     <!-- table displaying relevant data only for aa certain date (submitted by input above) for anything that has a false in it -->
