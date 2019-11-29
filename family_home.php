@@ -48,7 +48,7 @@
         $sql = "SELECT `group`, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
         JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
         JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
-        WHERE `Patients`.familycode = '{$_POST['family_code']}' OR `Patients`.userid = {$_POST['patient_id']}
+        WHERE (`Patients`.familycode = '{$_POST['family_code']}' OR `Patients`.userid = {$_POST['patient_id']})
         AND `Reports`.`date` = '$today';";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
