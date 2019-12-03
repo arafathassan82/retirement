@@ -264,3 +264,13 @@ tr:nth-of-type(2n + 2) {
 .back-button:hover {
   opacity: 1;
 }
+
+span.fail {
+    font-size: 1.2rem;
+    box-shadow: 5px 5px 5px #acacac;
+    display: block;
+    background-color: rgb(248, 96, 96);
+    text-align: center;
+    padding: .5rem 0;
+    width: 100%;
+}
