@@ -38,7 +38,7 @@
         echo "<p>Name: $fname $lname</p>";
       ?>
       <!-- should be filled in with today's date by default -->
-      <input type="date" name="date" value="<?php echo date('Y-m-d');?>">
+      <input type="date" name="date" value="<?php if(isset($_POST['date'])) { echo $_POST['date']; } else { echo date('Y-m-d'); } ?>">
       <input type="submit" name="submit">
     </form>
 
