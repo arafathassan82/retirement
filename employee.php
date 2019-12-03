@@ -116,7 +116,7 @@
             echo "<td>{$row['fname']}</td>";
             echo "<td>{$row['lname']}</td>";
             echo "<td>{$row['name']}</td>";
-            echo "<td>{$row['salary']}</td>";
+            echo "<td>" . "$" . "{$row['salary']}</td>";
             echo "</tr>";
           }
         }
