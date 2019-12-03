@@ -9,7 +9,7 @@
     <main>
       <a href="login.php">Login</a>
       <a href="register.php">Register</a>
-      <section id="bgimg"><img src="https://www.espritlifestyle.com/app/uploads/2018/05/DSC_1804-e1530027414598.jpg" alt="retirement home"></section>
+      <section id="bgimg"><img src="includes/retirementhome.jpg" alt="retirement home"></section>
     </main>
   </body>
 </html>
