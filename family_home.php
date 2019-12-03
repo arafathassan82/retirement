@@ -45,26 +45,38 @@
         include "database/db.php";
         $today = date('Y-m-d');
 
-        $sql = "SELECT `group`, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
+        $append_str = "";
+        if(isset($_POST['family_code']) and $_POST['family_code'] != "") {
+          $append_str .= "`Patients`.familycode = '{$_POST['family_code']}'";
+        }
+        if(isset($_POST['patient_id']) and $_POST['patient_id'] != "") {
+          if($append_str != "") {
+            $append_str .= " AND `Patients`.userid = {$_POST['patient_id']}";
+          } else {
+            $append_str .= "`Patients`.userid = {$_POST['patient_id']}";
+          }
+        }
+
+        $sql = "SELECT `group`, userid, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
         JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
         JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
-        WHERE (`Patients`.familycode = '{$_POST['family_code']}' OR `Patients`.userid = {$_POST['patient_id']})
-        AND `Reports`.`date` = '$today';";
+        WHERE `Reports`.`date` = '$today'
+        AND $append_str;";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
-
-        $sql2 = "SELECT isfinished, doctorid, `Users`.fname AS fname, `Users`.lname AS lname FROM `Appointments`
-        JOIN `Users` ON `Appointments`.doctorid = `Users`.id
-        WHERE patientid = {$_POST['patient_id']}
-        AND `Appointments`.`date` = '$today';";
-        $result2 = mysqli_query($conn, $sql2);
-        $resultCheck2 = mysqli_num_rows($result2);
 
 
         echo "<tr>";
 
         if($resultCheck > 0){
           while($row = mysqli_fetch_assoc($result)){
+            $sql2 = "SELECT isfinished, doctorid, `Users`.fname AS fname, `Users`.lname AS lname FROM `Appointments`
+            JOIN `Users` ON `Appointments`.doctorid = `Users`.id
+            WHERE patientid = {$row['userid']}
+            AND `Appointments`.`date` = '$today';";
+            $result2 = mysqli_query($conn, $sql2);
+            $resultCheck2 = mysqli_num_rows($result2);
+
             if($resultCheck2 > 0){
               $row2 = mysqli_fetch_assoc($result2);
               echo "<td>{$row2['fname']} {$row2['lname']}</td>";
