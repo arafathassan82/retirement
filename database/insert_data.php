@@ -22,7 +22,13 @@ VALUES (1, 'Spencer', 'Nauman', 'snauman817@gmail.com', '7177199508', 'fakepass'
 (6, 'Minecraft', 'Steve', 'steve@gmail.com', '8888888888', 'pass5', '2001-01-01', FALSE),
 (6, 'John', 'Wick', 'john@gmail.com', '999999999', 'johnwick', '1985-02-15', FALSE),
 (6, 'Johnathan', 'Whitman', 'darth@gmail.com', '1212121212', 'darthmaul', '2003-05-05', FALSE),
-(6, 'Building', 'Bruenor', 'bruenor@gmail.com', '1515141210', 'bruenor', '2000-01-01', FALSE);";
+(6, 'Building', 'Bruenor', 'bruenor@gmail.com', '1515141210', 'bruenor', '2000-01-01', FALSE),
+(1, 'admin', 'admin', 'admin', '00000', 'admin', '2000-01-01', TRUE),
+(2, 'doctor', 'doctor', 'doctor', '00000', 'doctor', '2000-01-01', TRUE),
+(3, 'supervisor', 'supervisor', 'supervisor', '00000', 'supervisor', '2000-01-01', TRUE),
+(4, 'caregiver', 'caregiver', 'caregiver', '00000', 'caregiver', '2000-01-01', TRUE),
+(5, 'family', 'family', 'family', '00000', 'family', '2000-01-01', TRUE),
+(6, 'patient', 'patient', 'patient', '00000', 'patient', '2000-01-01', TRUE);";
 mysqli_query($conn, $query2);
 
 $employeequery = "INSERT INTO `Employees` (`userid`, `salary`)
@@ -32,14 +38,19 @@ VALUES (1, 60000),
 (4, 30000),
 (5, 30000),
 (6, 32000),
-(7, 25000);";
+(7, 25000),
+(13, 90000),
+(14, 50000),
+(15, 30000),
+(16, 30000);";
 mysqli_query($conn, $employeequery);
 
 $patientsquery = "INSERT INTO `Patients` (`userid`, `familycode`, `emergencycontact`, `emergencyrelation`, `group`, `admissiondate`, `due`)
 VALUES (9, 'a', '71777777777', 'Mother', 1, '2019-11-04', 0.0000),
 (10, 'b', '7178888888', 'Father', 2, '2019-11-16', 0.0000),
 (11, 'c', '7179999999', 'Mother', 3, '2019-11-13', 0.0000),
-(12, 'd', '7171010101', 'Father', 4, '2019-11-18', 0.0000);";
+(12, 'd', '7171010101', 'Father', 4, '2019-11-18', 0.0000),
+(18, 'c', '7179999999', 'Mother', 3, '2019-11-13', 0.0000);";
 mysqli_query($conn, $patientsquery);
 
 $query3 = "INSERT INTO `Roster` (date, doctorid, supervisorid, caregiver1id, caregiver2id, caregiver3id, caregiver4id)
