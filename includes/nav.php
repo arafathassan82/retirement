@@ -24,6 +24,7 @@
       $nav_arr[] = 'home';
       $nav_arr[] = 'roster';
       $nav_arr[] = 'new_roster';
+      $nav_arr[] = 'doctors_appointment';
     } else if ($_SESSION['role'] == 2) {
       $nav_arr[] = 'home';
       $nav_arr[] = 'roster';
