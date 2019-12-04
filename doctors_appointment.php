@@ -34,7 +34,16 @@
 
             echo "Patient ID: <input type=\"text\" name=\"patient_id\" value=\"$id\" readonly>";
             echo "Patient Name: <input type=\"text\" name=\"name\" value=\"$fname $lname\" readonly>";
-            echo "Doctor: <input type=\"text\" name=\"doctor\" value=\"{$_POST['doctor']}\" readonly>";
+
+            $getdoctor = "SELECT fname, lname FROM `Users` WHERE id = {$_POST['doctor']};";
+            $doctornameresult = mysqli_query($conn, $getdoctor);
+            $doctornamerow = mysqli_fetch_assoc($doctornameresult);
+            $doctorfname = $doctornamerow['fname'];
+            $doctorlname = $doctornamerow['lname'];
+
+            echo "Doctor: <input type=\"text\" name=\"doctor_name\" value=\"$doctorfname $doctorlname\" readonly>";
+            echo "Doctor: <input type=\"hidden\" name=\"doctor\" value=\"{$_POST['doctor']}\" readonly>";
+
             echo "Date: <input type=\"text\" name=\"date\" value=\"{$_POST['date']}\" readonly>";
           }
           echo "<input type=\"submit\" name=\"submit_changes\" value=\"Confirm\">";
@@ -44,10 +53,11 @@
       } else {
         echo "Patient ID: <input type=\"number\" name=\"patient_id\">
         Doctor: <select name=\"doctor\">";
+        $today = date("Y-m-d");
 
         // loop through doctors
         include_once "database/db.php";
-        $doctorsquery = "SELECT id, fname, lname FROM `Users` WHERE roleid = 2 AND approved = 1";
+        $doctorsquery = "SELECT `Users`.id, fname, lname, `date` FROM `Users` JOIN `Roster` ON `Users`.id = `Roster`.doctorid WHERE roleid = 2 AND approved = 1 AND `date` = '$today';";
         $result = mysqli_query($conn, $doctorsquery);
         $resultCheckDoctors = mysqli_num_rows($result);
         if($resultCheckDoctors > 0){
@@ -60,7 +70,6 @@
             }
         }
 
-        $today = date("Y-m-d");
         echo "</select>
         Date: <input type=\"date\" name=\"date\" value=\"$today\">";
         echo "<input type=\"submit\" name=\"info_of_appointment\">";
