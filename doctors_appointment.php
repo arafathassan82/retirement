@@ -34,7 +34,16 @@
 
             echo "Patient ID: <input type=\"text\" name=\"patient_id\" value=\"$id\" readonly>";
             echo "Patient Name: <input type=\"text\" name=\"name\" value=\"$fname $lname\" readonly>";
-            echo "Doctor: <input type=\"text\" name=\"doctor\" value=\"{$_POST['doctor']}\" readonly>";
+
+            $getdoctor = "SELECT fname, lname FROM `Users` WHERE id = {$_POST['doctor']};";
+            $doctornameresult = mysqli_query($conn, $getdoctor);
+            $doctornamerow = mysqli_fetch_assoc($doctornameresult);
+            $doctorfname = $doctornamerow['fname'];
+            $doctorlname = $doctornamerow['lname'];
+
+            echo "Doctor: <input type=\"text\" name=\"doctor_name\" value=\"$doctorfname $doctorlname\" readonly>";
+            echo "Doctor: <input type=\"hidden\" name=\"doctor\" value=\"{$_POST['doctor']}\" readonly>";
+
             echo "Date: <input type=\"text\" name=\"date\" value=\"{$_POST['date']}\" readonly>";
           }
           echo "<input type=\"submit\" name=\"submit_changes\" value=\"Confirm\">";
