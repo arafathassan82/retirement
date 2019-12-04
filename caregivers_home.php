@@ -19,6 +19,7 @@
       }
     ?>
     <h1>Home</h1>
+    <h2><?php echo date('Y-m-d') ?></h2>
 
     <!-- table displaying all patients of the caregiver currently accessing this page, for today -->
     <!-- morning/afternoon/night and breakfast/lunch/dinner all have checkmarks, and there's a submit button to send in new data once filled out -->

@@ -28,7 +28,7 @@
     <!-- pull up a table representing the current status of a resident's medicine and meals
          based on the patient id, date and family code sent through in form -->
     <?php
-      if(isset($_POST['family_code'])){
+      if(isset($_POST['family_code']) and isset($_POST['patient_id']) and $_POST['family_code'] != "" and $_POST['patient_id'] != ""){
         echo "<table>
           <tr>
             <th>Doctor's Name</th>
@@ -45,23 +45,12 @@
         include "database/db.php";
         $today = date('Y-m-d');
 
-        $append_str = "";
-        if(isset($_POST['family_code']) and $_POST['family_code'] != "") {
-          $append_str .= "`Patients`.familycode = '{$_POST['family_code']}'";
-        }
-        if(isset($_POST['patient_id']) and $_POST['patient_id'] != "") {
-          if($append_str != "") {
-            $append_str .= " AND `Patients`.userid = {$_POST['patient_id']}";
-          } else {
-            $append_str .= "`Patients`.userid = {$_POST['patient_id']}";
-          }
-        }
-
         $sql = "SELECT `group`, userid, morning, afternoon, night, breakfast, lunch, dinner, caregiver1id, caregiver2id, caregiver3id, caregiver4id FROM `Patients`
         JOIN `Reports` ON `Reports`.patientid = `Patients`.userid
         JOIN `Roster` ON `Reports`.`date` = `Roster`.`date`
         WHERE `Reports`.`date` = '$today'
-        AND $append_str;";
+        AND `Patients`.familycode = '{$_POST['family_code']}'
+        AND `Patients`.userid = {$_POST['patient_id']};";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
