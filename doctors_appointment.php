@@ -44,10 +44,11 @@
       } else {
         echo "Patient ID: <input type=\"number\" name=\"patient_id\">
         Doctor: <select name=\"doctor\">";
+        $today = date("Y-m-d");
 
         // loop through doctors
         include_once "database/db.php";
-        $doctorsquery = "SELECT id, fname, lname FROM `Users` WHERE roleid = 2 AND approved = 1";
+        $doctorsquery = "SELECT `Users`.id, fname, lname, `date` FROM `Users` JOIN `Roster` ON `Users`.id = `Roster`.doctorid WHERE roleid = 2 AND approved = 1 AND `date` = '$today';";
         $result = mysqli_query($conn, $doctorsquery);
         $resultCheckDoctors = mysqli_num_rows($result);
         if($resultCheckDoctors > 0){
@@ -60,7 +61,6 @@
             }
         }
 
-        $today = date("Y-m-d");
         echo "</select>
         Date: <input type=\"date\" name=\"date\" value=\"$today\">";
         echo "<input type=\"submit\" name=\"info_of_appointment\">";
