@@ -10,7 +10,7 @@
       $root = $_SERVER['DOCUMENT_ROOT'];
       include "$root/retirement-home/includes/nav.php";
       // always include session_start in pages that you want to reference session variables in.
-      if ($_SESSION['role'] != 1) {
+      if ($_SESSION['role'] != 1 && $_SESSION['role'] != 3) {
         header("Location: home.php");
       }
     ?>
