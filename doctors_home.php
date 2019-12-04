@@ -97,8 +97,8 @@
           if($resultCheck>0) {
             while($row = mysqli_fetch_assoc($result)) {
               echo "<tr>";
-              echo "<td>{$row['fname']}</td>";
-              echo "<td>{$row['lname']}</td>";
+              echo "<td><a href=\"patient_of_doctor.php?id={$row['id']}\">{$row['fname']}</a></td>";
+              echo "<td><a href=\"patient_of_doctor.php?id={$row['id']}\">{$row['lname']}</a></td>";
               echo "<td>{$row['date']}</td>";
               echo "<td>{$row['comment']}</td>";
               echo "<td>{$row['morning']}</td>";
@@ -128,13 +128,13 @@
             $post_date = date('Y-m-d');
           }
           $date = date('Y-m-d');
-          $sql = "SELECT fname, lname, a.date FROM Appointments a JOIN Users u ON a.patientid = u.id WHERE a.date <= '$post_date' AND a.date >= '$date' AND a.doctorid = {$_SESSION['user']} AND isfinished = 0;";
+          $sql = "SELECT u.id, fname, lname, a.date FROM Appointments a JOIN Users u ON a.patientid = u.id WHERE a.date <= '$post_date' AND a.date >= '$date' AND a.doctorid = {$_SESSION['user']} AND isfinished = 0;";
           $result = mysqli_query($conn, $sql);
           $resultCheck = mysqli_num_rows($result);
           if($resultCheck>0) {
             while($row = mysqli_fetch_assoc($result)) {
               echo "<tr>";
-              echo "<td>{$row['fname']} {$row['lname']}</td>";
+              echo "<td><a href=\"patient_of_doctor.php?id={$row['id']}\">{$row['fname']} {$row['lname']}</a></td>";
               echo "<td>{$row['date']}</td>";
               echo "</tr>";
             }

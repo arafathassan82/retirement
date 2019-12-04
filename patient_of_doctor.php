@@ -21,7 +21,7 @@
 </head>
 <body>
     <?php
-        echo "<a href=\"select_patient.php\" class=\"back-button\">⮐ Back</a>";
+        echo "<a href=\"home.php\" class=\"back-button\">⮐ Back</a>";
         include_once "database/db.php";
         $sql = "SELECT id, fname, lname FROM `Users` WHERE id = {$_GET['id']}";
         $result = mysqli_query($conn, $sql);
