@@ -63,8 +63,12 @@
 
     <?php
       if (isset($_POST['new_payment'])) {
-        $sql = "UPDATE Patients SET due = (due - {$_POST['new_payment']}) WHERE userid = {$_POST['patient']};";
-        mysqli_query($conn, $sql);
+        if ($_POST['new_payment'] > 0) {
+          $sql = "UPDATE Patients SET due = (due - {$_POST['new_payment']}) WHERE userid = {$_POST['patient']};";
+          mysqli_query($conn, $sql);
+        } else {
+          echo "<span class='error'>We're not a loan office</span>";
+        }
       }
     ?>
 
