@@ -37,7 +37,7 @@
 
     <!-- display total due for patient sent in from above input -->
     <?php
-      if (isset($_POST['patientid'])) {
+      if (isset($_POST['patientid']) and $_POST['patientid'] != "") {
         $sql = "SELECT due FROM Patients WHERE userid = {$_POST['patientid']};";
 
         $result = mysqli_query($conn, $sql);
