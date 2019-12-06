@@ -1,6 +1,7 @@
 function appendExtra() {
     var form = document.getElementById("registerform");
     var submit = document.getElementById("submit");
+    var registerlinkog = document.getElementById("tologin");
 
     var familyCodeLabel = document.createElement("label");
     var emergencyContactLabel = document.createElement("label");
@@ -11,12 +12,19 @@ function appendExtra() {
     var relation = document.createElement("input");
 
     form.removeChild(submit);
+    form.removeChild(registerlinkog);
 
     var submit2 = document.createElement("input");
 
     submit2.type = "submit";
     submit2.name = "register";
     submit2.id = "submit";
+
+    var registerlinknew = document.createElement("a");
+
+    registerlinknew.href = "login.php";
+    registerlinknew.id = "tologin";
+    registerlinknew.innerHTML = "Already Registered? Login";
 
     familyCodeLabel.id = "familycode";
     emergencyContactLabel.id = "emergency";
@@ -42,6 +50,7 @@ function appendExtra() {
     relationLabel.appendChild(relation);
 
     form.appendChild(submit2);
+    form.appendChild(registerlinknew);
 }
 
 function removeExtra() {
