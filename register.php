@@ -74,6 +74,7 @@
         <!-- Family code, if the role is a family member -->
 
         <input type="submit" name="register" id="submit">
+        <a href="login.php" id="tologin">Already Registered? Login</a>
         <section id="bgimg"><img src="includes/retirementhome.jpg" alt="retirement home"></section>
       </form>
 
