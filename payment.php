@@ -37,7 +37,7 @@
 
     <!-- display total due for patient sent in from above input -->
     <?php
-      if (isset($_POST['patientid'])) {
+      if (isset($_POST['patientid']) and $_POST['patientid'] != "") {
         $sql = "SELECT due FROM Patients WHERE userid = {$_POST['patientid']};";
 
         $result = mysqli_query($conn, $sql);
@@ -63,8 +63,12 @@
 
     <?php
       if (isset($_POST['new_payment'])) {
-        $sql = "UPDATE Patients SET due = (due - {$_POST['new_payment']}) WHERE userid = {$_POST['patient']};";
-        mysqli_query($conn, $sql);
+        if ($_POST['new_payment'] > 0) {
+          $sql = "UPDATE Patients SET due = (due - {$_POST['new_payment']}) WHERE userid = {$_POST['patient']};";
+          mysqli_query($conn, $sql);
+        } else {
+          echo "<span class='error'>We're not a loan office</span>";
+        }
       }
     ?>
 

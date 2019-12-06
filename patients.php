@@ -124,6 +124,8 @@
             echo "<td>{$row['admissiondate']}</td>";
             echo "</tr>";
           }
+        } else {
+          echo "<tr><td><span>No Results Found</span></td></tr>";
         }
       ?>
     </table>

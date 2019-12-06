@@ -58,8 +58,12 @@
         include "$root/retirement-home/database/db.php";
 
         if(isset($_POST['new_salary'])) {
-          $add_salary = "UPDATE Employees SET salary = {$_POST['salary']} WHERE userid = {$_POST['employee_id']};";
-          mysqli_query($conn, $add_salary);
+          if ($_POST['salary'] >= 0) {
+            $add_salary = "UPDATE Employees SET salary = {$_POST['salary']} WHERE userid = {$_POST['employee_id']};";
+            mysqli_query($conn, $add_salary);
+          } else {
+            echo "<span class='error'>Salary cannot be negative</span>";
+          }
         }
 
         $sql_query = "SELECT u.id, roleid, fname, lname, salary, name FROM Users u JOIN Roles r ON u.roleid = r.id JOIN Employees e ON u.id = e.userid WHERE ";
@@ -119,6 +123,8 @@
             echo "<td>" . "$" . "{$row['salary']}</td>";
             echo "</tr>";
           }
+        } else {
+          echo "<tr><td><span>No Results Found</span></td></tr>";
         }
       ?>
     </table>

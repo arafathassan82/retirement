@@ -17,9 +17,26 @@
 
       if(isset($_POST['supervisor'])){
         include_once 'database/db.php';
-        mysqli_query($conn, "INSERT INTO `Roster` (`date`, doctorid, supervisorid, caregiver1id, caregiver2id, caregiver3id, caregiver4id)
-        VALUES ('{$_POST['date']}', {$_POST['doctor']}, {$_POST['supervisor']}, {$_POST['caregiver1']}, {$_POST['caregiver2']}, {$_POST['caregiver3']}, {$_POST['caregiver4']});");
-        header("Location: new_roster.php");
+        $check_doctor = mysqli_query($conn, "SELECT id, roleid FROM `Users` WHERE id = {$_POST['doctor']} AND approved = 1;");
+        $doc_result = mysqli_fetch_assoc($check_doctor);
+        $check_supervisor = mysqli_query($conn, "SELECT id, roleid FROM `Users` WHERE id = {$_POST['supervisor']} AND approved = 1;");
+        $sup_result = mysqli_fetch_assoc($check_supervisor);
+        $check_caregiver1 = mysqli_query($conn, "SELECT id, roleid FROM `Users` WHERE id = {$_POST['caregiver1']} AND approved = 1;");
+        $c1_result = mysqli_fetch_assoc($check_caregiver1);
+        $check_caregiver2 = mysqli_query($conn, "SELECT id, roleid FROM `Users` WHERE id = {$_POST['caregiver2']} AND approved = 1;");
+        $c2_result = mysqli_fetch_assoc($check_caregiver2);
+        $check_caregiver3 = mysqli_query($conn, "SELECT id, roleid FROM `Users` WHERE id = {$_POST['caregiver3']} AND approved = 1;");
+        $c3_result = mysqli_fetch_assoc($check_caregiver3);
+        $check_caregiver4 = mysqli_query($conn, "SELECT id, roleid FROM `Users` WHERE id = {$_POST['caregiver4']} AND approved = 1;");
+        $c4_result = mysqli_fetch_assoc($check_caregiver4);
+
+        if ($doc_result['roleid'] != 2 or $sup_result['roleid'] != 3 or $c1_result['roleid'] != 4 or $c2_result['roleid'] != 4 or $c3_result['roleid'] != 4 or $c4_result['roleid'] != 4) {
+          echo "<span class='error'>One of the submitted users can't be added under this role</span>";
+        } else {
+          mysqli_query($conn, "INSERT INTO `Roster` (`date`, doctorid, supervisorid, caregiver1id, caregiver2id, caregiver3id, caregiver4id)
+          VALUES ('{$_POST['date']}', {$_POST['doctor']}, {$_POST['supervisor']}, {$_POST['caregiver1']}, {$_POST['caregiver2']}, {$_POST['caregiver3']}, {$_POST['caregiver4']});");
+          header("Location: new_roster.php");
+        }
       }
     ?>
     <main>
